@@ -62,6 +62,7 @@ export default {
     background-color: $green;
     border: 1px solid $black;
     transition: $transition;
+    z-index: 3;
 
     @media (max-width: 768px) {
       width: 30px;
