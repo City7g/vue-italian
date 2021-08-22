@@ -1,0 +1,189 @@
+<template>
+  <div class="popup-login">
+    <div class="popup-login__close" @click="change_state_login">
+      <img src="@/assets/images/popup-close-icon.svg" alt="" />
+    </div>
+
+    <div class="popup-login__wrap">
+      <h2 class="title-h2 popup-login__title">Быстрая регистрация</h2>
+      <p class="text-regular popup-login__description">
+        Для доступа к функциям личного кабинета необходимо зарегистрироваться.
+      </p>
+
+      <form @submit.prevent="login" class="popup-login__form">
+        <input type="text" placeholder="Ваше имя" />
+        <input type="email" placeholder="Ваша почта" />
+        <input type="password" placeholder="Придумайте пароль" />
+        <button type="submit" class="small-btn">Зарегистрироваться</button>
+      </form>
+
+      <p class="text-main popup-login__text">Регистрация через:</p>
+      <ul class="popup-login__social">
+        <li class="text-main">
+          <a href="#">
+            <img src="@/assets/images/google-social-icon.svg" alt="" />
+          </a>
+        </li>
+        <li class="text-main">
+          <a href="#">
+            <img src="@/assets/images/facebook-social-icon.svg" alt="" />
+          </a>
+        </li>
+        <li class="text-main">
+          <a href="#">
+            <img src="@/assets/images/vk-social-icon.svg" alt="" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapActions } from "vuex";
+
+export default {
+  name: "Login",
+  methods: {
+    ...mapActions(["change_state_login"]),
+    login() {
+      this.$router.push({ name: "StudentHome" });
+      this.change_state_login();
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+.popup-login {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50vw;
+  z-index: 100;
+
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: flex-start;
+
+  padding: 50px 100px;
+
+  background-color: $white;
+  overflow: auto;
+  scrollbar-width: none;
+
+  @media (max-width: 768px) {
+    width: 350px;
+
+    padding: 120px 65px;
+  }
+
+  @media (max-width: 450px) {
+    width: 100%;
+  }
+
+  @media (max-width: 350px) {
+    padding: 80px 35px;
+  }
+
+  &__close {
+    display: none;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 7px;
+
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  &__wrap {
+    max-width: 310px;
+  }
+
+  &__title {
+    margin-bottom: 5px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__description {
+    margin-bottom: 30px;
+  }
+
+  &__text {
+    margin-top: 40px;
+
+    text-align: center;
+  }
+
+  &__social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 5px;
+
+    & li {
+      margin: 0 6px;
+    }
+  }
+
+  &__form {
+    & button {
+      margin-top: 25px;
+    }
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 13px 50px;
+  margin-bottom: 15px;
+
+  font-family: "Circe";
+  font-size: 16px;
+  line-height: 27px;
+
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: 23px center;
+  border: 1px solid $grey-disabled;
+  border-radius: $border;
+
+  @media (max-width: 768px) {
+    padding: 10px 34px;
+    margin-bottom: 10px;
+
+    background-position: 12px center;
+  }
+
+  &:focus {
+    border: 1px solid $black;
+    outline: none;
+  }
+}
+
+input[type="text"] {
+  background-image: url(~@/assets/images/user-icon-input.svg);
+}
+
+input[type="email"] {
+  background-image: url(~@/assets/images/mail-icon-input.svg);
+}
+
+input[type="password"] {
+  background-image: url(~@/assets/images/lock-icon-input.svg);
+}
+</style>

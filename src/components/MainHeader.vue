@@ -1,0 +1,398 @@
+<template>
+  <header class="header">
+    <div class="container">
+      <router-link to="/" class="header-logo">
+        <img src="@/assets/images/logo.svg" alt="" />
+      </router-link>
+
+      <nav class="header-nav" :class="{ active: isOpenMenu }">
+        <ul class="header-nav__list">
+          <li
+            v-for="link in menuList"
+            :key="link.title"
+            class="header-nav__item"
+          >
+            <router-link
+              @click="isOpenMenu = false"
+              :to="link.path"
+              class="main-link header-nav__link"
+            >
+              {{ link.title }}
+            </router-link>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header-social">
+        <button class="header-social__button">
+          <img src="@/assets/images/social/youtube.svg" alt="" />
+        </button>
+        <button class="header-social__button">
+          <img src="@/assets/images/social/facebook.svg" alt="" />
+        </button>
+        <button class="header-social__button">
+          <img src="@/assets/images/social/instagram.svg" alt="" />
+        </button>
+      </div>
+
+      <div class="header-btn">
+        <button class="white-btn" @click="change_state_login">Войти</button>
+        <button class="small-btn">Регистрация</button>
+      </div>
+
+      <button
+        class="header-hamburger"
+        :class="{ active: isOpenMenu }"
+        @click="isOpenMenu = !isOpenMenu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+</template>
+
+<script>
+import { mapActions } from "vuex";
+
+export default {
+  name: "MainHeader",
+  data() {
+    return {
+      isOpenMenu: false,
+
+      menuList: [
+        {
+          title: "В разработке",
+          path: "/home",
+        },
+        // {
+        //   title: "Обучение",
+        //   path: "/some",
+        // },
+        {
+          title: "Материалы",
+          path: "/materials",
+        },
+        {
+          title: "Грамматика ",
+          path: "/",
+        },
+        {
+          title: "Медиатека",
+          path: "/media",
+        },
+        {
+          title: "Презентации",
+          path: "/presentation",
+        },
+
+        {
+          title: "Блог",
+          path: "/blog",
+        },
+        {
+          title: "О нас",
+          path: "/about",
+        },
+      ],
+    };
+  },
+  methods: {
+    ...mapActions(["change_state_login"]),
+    supportNavigation() {
+      document.querySelectorAll(".header-nav__link").forEach((item) => {
+        item.addEventListener("focus", () => {
+          this.isOpenMenu = true;
+        });
+        item.addEventListener("blur", () => {
+          this.isOpenMenu = false;
+        });
+      });
+      document.querySelectorAll(".header-social__button").forEach((item) => {
+        item.addEventListener("focus", () => {
+          this.isOpenMenu = true;
+        });
+        item.addEventListener("blur", () => {
+          this.isOpenMenu = false;
+        });
+      });
+    },
+    addSocialToMenu() {
+      console.log(window.innerWidth);
+      if (window.innerWidth <= 768) {
+        document
+          .querySelector(".header-nav")
+          .append(document.querySelector(".header-social"));
+      } else {
+        document
+          .querySelector(".header-nav")
+          .after(document.querySelector(".header-social"));
+      }
+    },
+  },
+  mounted() {
+    console.log('mount')
+    // document.addEventListener("keyup", (e) => {
+    //   if (e.keyCode === 9) {
+    //     this.supportNavigation();
+    //   }
+    // });
+    this.addSocialToMenu();
+    window.addEventListener("resize", this.addSocialToMenu);
+  },
+  beforeUnmount() {
+    console.log('unmount')
+    // document.addEventListener("keyup", (e) => {
+    //   if (e.keyCode === 9) {
+    //     this.supportNavigation();
+    //   }
+    // });
+    // this.addSocialToMenu();
+    window.removeEventListener("resize", this.addSocialToMenu);
+  },
+};
+</script>
+
+<style lang="scss">
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  background-color: #fff;
+
+  & .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 80px;
+
+    @media (max-width: 1200px) {
+      height: 50px;
+    }
+  }
+}
+
+.header-logo {
+  @media (max-width: 992px) {
+    margin-right: auto;
+  }
+
+  & img {
+    @media (max-width: 1200px) {
+      height: 26px;
+    }
+  }
+}
+
+// .header-nav {
+//   @media (max-width: 1200px) {
+//     position: fixed;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     width: 300px;
+//     transform: scaleX(0);
+//     transition: $transition;
+//     transform-origin: right;
+
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+//     align-items: flex-start;
+
+//     padding: 50px 40px 20px 40px;
+
+//     background-color: $white;
+
+//     &.active {
+//       transform: scaleX(1);
+//     }
+//   }
+
+//   &__link {
+//     margin: 0 12px;
+
+//     @media (max-width: 1200px) {
+//       margin: 10px 0px;
+//     }
+//   }
+// }
+
+.header-nav {
+  @media (max-width: 992px) {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 300px;
+    transform: scaleX(0);
+    transition: $transition;
+    transform-origin: right;
+    z-index: 11;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 20px 40px 20px 40px;
+
+    background-color: $white;
+
+    &.active {
+      transform: scaleX(1);
+    }
+  }
+
+  &__list {
+    display: flex;
+
+    @media (max-width: 992px) {
+      flex-direction: column;
+    }
+  }
+
+  &__item {
+    margin: 0 12px;
+
+    @media (max-width: 1200px) {
+      margin: 0 8px;
+    }
+
+    @media (max-width: 992px) {
+      margin: 10px 0px;
+    }
+  }
+
+  &__link.router-link-exact-active,
+  &__link:focus {
+    color: $green;
+    // outline-offset: 2px;
+  }
+}
+
+.header-social {
+  display: flex;
+  justify-content: center;
+  align-content: inherit;
+
+  @media (max-width: 992px) {
+    margin-right: 28px;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 40px;
+  }
+
+  &__button ~ &__button {
+    margin-left: 10px;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 28px;
+    height: 28px;
+
+    border: 1px solid $grey-text;
+    border-radius: $border;
+
+    @media (max-width: 768px) {
+      width: 20px;
+      height: 20px;
+
+      & img {
+        transform: scale(0.75);
+      }
+    }
+  }
+}
+
+.header-btn {
+  & button {
+    position: relative;
+    z-index: 11;
+  }
+
+  & button ~ button {
+    margin-left: 8px;
+  }
+
+  @media (max-width: 319px) {
+    & button:last-child {
+      display: none;
+    }
+  }
+}
+
+.header-hamburger {
+  position: relative;
+  display: none;
+  height: 30px;
+  width: 30px;
+
+  margin-left: 28px;
+
+  @media (max-width: 992px) {
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 18px;
+  }
+
+  @media (max-width: 349px) {
+    margin-left: 8px;
+  }
+
+  cursor: pointer;
+
+  & span {
+    display: block;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 25px;
+    height: 2px;
+
+    background-color: $grey-text;
+    border-radius: $border;
+    transition: $transition;
+
+    &:first-child {
+      transform: translate(-50%, -7px);
+    }
+
+    &:nth-child(2) {
+      transform: translateX(-50%);
+    }
+
+    &:last-child {
+      transform: translate(-50%, 7px);
+    }
+  }
+
+  &.active {
+    & span:first-child {
+      transform: translate(-50%, 0) rotate(45deg);
+    }
+
+    & span:nth-child(2) {
+      opacity: 0;
+    }
+
+    & span:last-child {
+      transform: translate(-50%, 0) rotate(-45deg);
+    }
+  }
+}
+</style>

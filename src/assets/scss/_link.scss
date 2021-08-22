@@ -1,0 +1,11 @@
+.main-link {
+  color: $black;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.03em;
+  transition: $transition;
+
+  &:hover {
+    color: $green;
+  }
+}

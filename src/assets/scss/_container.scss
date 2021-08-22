@@ -1,0 +1,13 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $section-x;
+}
+
+section {
+  padding: $section-y 0;
+
+  @media (max-width: 768px) {
+    padding: $section-top-mobile 0 $section-bottom-mobile;
+  }
+}
