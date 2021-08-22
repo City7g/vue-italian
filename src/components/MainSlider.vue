@@ -100,10 +100,6 @@ export default {
   padding: 30px;
 
   background-color: $grey-bg;
-
-  & > * {
-    // margin: 0 auto;
-  }
 }
 .slider__item:nth-child(2n) {
   background-color: $green;
