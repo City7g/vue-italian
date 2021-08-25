@@ -69,6 +69,7 @@ export default {
 <style lang="scss">
 .info-section {
   position: relative;
+  background-color: $white;
 
   &--grey {
     background-color: $grey-bg;

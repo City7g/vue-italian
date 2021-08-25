@@ -95,6 +95,8 @@ export default {
 
 <style lang="scss">
 .home-grammar {
+  background-color: $white;
+  
   &__title {
     margin-bottom: 60px;
 
@@ -109,6 +111,8 @@ export default {
 }
 
 .home-blog {
+  background-color: $white;
+
   &__wrap {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

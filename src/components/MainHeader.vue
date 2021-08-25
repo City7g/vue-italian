@@ -120,7 +120,6 @@ export default {
       });
     },
     addSocialToMenu() {
-      console.log(window.innerWidth);
       if (window.innerWidth <= 768) {
         document
           .querySelector(".header-nav")
@@ -133,7 +132,6 @@ export default {
     },
   },
   mounted() {
-    console.log('mount')
     // document.addEventListener("keyup", (e) => {
     //   if (e.keyCode === 9) {
     //     this.supportNavigation();
@@ -143,7 +141,6 @@ export default {
     window.addEventListener("resize", this.addSocialToMenu);
   },
   beforeUnmount() {
-    console.log('unmount')
     // document.addEventListener("keyup", (e) => {
     //   if (e.keyCode === 9) {
     //     this.supportNavigation();
@@ -161,7 +158,7 @@ export default {
   top: 0;
   z-index: 10;
 
-  background-color: #fff;
+  background-color: $white;
 
   & .container {
     display: flex;
