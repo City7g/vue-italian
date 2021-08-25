@@ -9,7 +9,7 @@
       button="Начать обучение"
       img="home-first.svg"
     >
-      <button class="main-btn">Начать</button>
+      <button class="main-btn" @click="change_state_login">Начать</button>
     </InfoSection>
 
     <!-- Кто мы? -->
@@ -50,7 +50,7 @@
       img="home-next.svg"
       isGrey
     >
-      <button class="main-btn">Начать</button>
+      <button class="main-btn" @click="change_state_login">Начать</button>
     </InfoSection>
 
     <section class="home-blog">
@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import InfoSection from "@/components/Sections/InfoSection.vue";
 import MaterialBlock from "@/components/Blocks/MaterialBlock.vue";
 
@@ -90,13 +90,16 @@ export default {
   computed: {
     ...mapState(["blogCategory", "grammarList"]),
   },
+  methods: {
+    ...mapActions(["change_state_login"]),
+  },
 };
 </script>
 
 <style lang="scss">
 .home-grammar {
   background-color: $white;
-  
+
   &__title {
     margin-bottom: 60px;
 

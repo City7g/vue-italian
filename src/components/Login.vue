@@ -165,7 +165,7 @@ input {
   border-radius: $border;
 
   @media (max-width: 768px) {
-    padding: 10px 34px;
+    padding: 10px 20px 10px 34px;
     margin-bottom: 10px;
 
     background-position: 12px center;

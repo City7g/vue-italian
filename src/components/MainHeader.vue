@@ -101,23 +101,25 @@ export default {
   },
   methods: {
     ...mapActions(["change_state_login"]),
-    supportNavigation() {
-      document.querySelectorAll(".header-nav__link").forEach((item) => {
-        item.addEventListener("focus", () => {
-          this.isOpenMenu = true;
+    supportNavigation(e) {
+      if (e.keyCode === 9) {
+        document.querySelectorAll(".header-nav__link").forEach((item) => {
+          item.addEventListener("focus", () => {
+            this.isOpenMenu = true;
+          });
+          item.addEventListener("blur", () => {
+            this.isOpenMenu = false;
+          });
         });
-        item.addEventListener("blur", () => {
-          this.isOpenMenu = false;
+        document.querySelectorAll(".header-social__button").forEach((item) => {
+          item.addEventListener("focus", () => {
+            this.isOpenMenu = true;
+          });
+          item.addEventListener("blur", () => {
+            this.isOpenMenu = false;
+          });
         });
-      });
-      document.querySelectorAll(".header-social__button").forEach((item) => {
-        item.addEventListener("focus", () => {
-          this.isOpenMenu = true;
-        });
-        item.addEventListener("blur", () => {
-          this.isOpenMenu = false;
-        });
-      });
+      }
     },
     addSocialToMenu() {
       if (window.innerWidth <= 768) {
@@ -132,21 +134,12 @@ export default {
     },
   },
   mounted() {
-    // document.addEventListener("keyup", (e) => {
-    //   if (e.keyCode === 9) {
-    //     this.supportNavigation();
-    //   }
-    // });
     this.addSocialToMenu();
     window.addEventListener("resize", this.addSocialToMenu);
+    document.addEventListener("keyup", this.supportNavigation);
   },
   beforeUnmount() {
-    // document.addEventListener("keyup", (e) => {
-    //   if (e.keyCode === 9) {
-    //     this.supportNavigation();
-    //   }
-    // });
-    // this.addSocialToMenu();
+    document.addEventListener("keyup", this.supportNavigation);
     window.removeEventListener("resize", this.addSocialToMenu);
   },
 };
@@ -222,7 +215,7 @@ export default {
 .header-nav {
   @media (max-width: 992px) {
     position: fixed;
-    top: 50px;
+    top: 0;
     right: 0;
     bottom: 0;
     width: 100%;
@@ -230,14 +223,14 @@ export default {
     transform: scaleX(0);
     transition: $transition;
     transform-origin: right;
-    z-index: 11;
+    z-index: 10;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 
-    padding: 20px 40px 20px 40px;
+    padding: 70px 40px 20px 40px;
 
     background-color: $white;
 
@@ -331,6 +324,7 @@ export default {
 
 .header-hamburger {
   position: relative;
+  z-index: 11;
   display: none;
   height: 30px;
   width: 30px;

@@ -82,6 +82,10 @@ export default {
 </script>
 
 <style lang="scss">
+.blog-content {
+  background-color: $white;
+}
+
 .blog-posts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
