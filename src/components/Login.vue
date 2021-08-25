@@ -156,6 +156,8 @@ input {
   font-size: 16px;
   line-height: 27px;
 
+  color: $black;
+  background-color: $white;
   background-size: auto;
   background-repeat: no-repeat;
   background-position: 23px center;
