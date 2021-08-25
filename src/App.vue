@@ -2,10 +2,10 @@
   <StudentLayout v-if="$route.meta.layout === 'student'" />
   <MainLayout v-else />
   <transition name="background">
-    <Background v-if="stateLogin" />
+    <Background v-show="stateLogin" />
   </transition>
   <transition name="popup">
-    <Login v-if="stateLogin" />
+    <Login v-show="stateLogin" />
   </transition>
 </template>
 
