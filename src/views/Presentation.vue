@@ -12,13 +12,9 @@
     <section class="presentation-slider">
       <div class="container">
         <div class="presentation-slider__wrap">
-          <div class="presentation-slider__item">
-            <MainSlider />
-          </div>
+          <MainSlider />
 
-          <div class="presentation-slider__item">
-            <MainSlider />
-          </div>
+          <MainSlider />
         </div>
       </div>
     </section>
@@ -40,7 +36,7 @@ export default {
 .presentation-slider {
   &__wrap {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
     gap: 25px;
 
     @media (max-width: 768px) {

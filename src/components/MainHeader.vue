@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" :class="{ 'header--shadow': isHeaderShadow }">
     <div class="container">
       <router-link to="/" class="header-logo">
         <img src="@/assets/images/logo.svg" alt="" />
@@ -37,7 +37,7 @@
 
       <div class="header-btn">
         <button class="white-btn" @click="change_state_login">Войти</button>
-        <button class="small-btn">Регистрация</button>
+        <button class="small-btn" @click="changeTheme">Тема</button>
       </div>
 
       <button
@@ -60,7 +60,9 @@ export default {
   name: "MainHeader",
   data() {
     return {
+      isHeaderShadow: false,
       isOpenMenu: false,
+      isLightTheme: false,
 
       menuList: [
         {
@@ -101,26 +103,6 @@ export default {
   },
   methods: {
     ...mapActions(["change_state_login"]),
-    supportNavigation(e) {
-      if (e.keyCode === 9) {
-        document.querySelectorAll(".header-nav__link").forEach((item) => {
-          item.addEventListener("focus", () => {
-            this.isOpenMenu = true;
-          });
-          item.addEventListener("blur", () => {
-            this.isOpenMenu = false;
-          });
-        });
-        document.querySelectorAll(".header-social__button").forEach((item) => {
-          item.addEventListener("focus", () => {
-            this.isOpenMenu = true;
-          });
-          item.addEventListener("blur", () => {
-            this.isOpenMenu = false;
-          });
-        });
-      }
-    },
     addSocialToMenu() {
       if (window.innerWidth <= 768) {
         document
@@ -132,15 +114,36 @@ export default {
           .after(document.querySelector(".header-social"));
       }
     },
+    addHeaderShadow() {
+      if (window.pageYOffset > 100) {
+        this.isHeaderShadow = true;
+      } else {
+        this.isHeaderShadow = false;
+      }
+    },
+    changeTheme() {
+      if (this.isLightTheme) {
+        document.body.style.setProperty("--main-text", "#fff");
+        document.body.style.setProperty("--main-text--light", "#bebebe");
+        document.body.style.setProperty("--main-bg", "#000");
+        document.body.style.setProperty("--main-bg--light", "#1e1e1e");
+      } else {
+        document.body.style.setProperty("--main-text", "#000");
+        document.body.style.setProperty("--main-text--light", "#1e1e1e");
+        document.body.style.setProperty("--main-bg", "#fff");
+        document.body.style.setProperty("--main-bg--light", "#bebebe");
+      }
+      this.isLightTheme = !this.isLightTheme;
+    },
   },
   mounted() {
     this.addSocialToMenu();
     window.addEventListener("resize", this.addSocialToMenu);
-    document.addEventListener("keyup", this.supportNavigation);
+    window.addEventListener("scroll", this.addHeaderShadow);
   },
   beforeUnmount() {
     document.addEventListener("keyup", this.supportNavigation);
-    window.removeEventListener("resize", this.addSocialToMenu);
+    window.addEventListener("scroll", this.addHeaderShadow);
   },
 };
 </script>
@@ -152,6 +155,10 @@ export default {
   z-index: 10;
 
   background-color: $white;
+
+  &--shadow {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
   & .container {
     display: flex;
@@ -234,7 +241,8 @@ export default {
 
     background-color: $white;
 
-    &.active {
+    &.active,
+    &:focus-within {
       transform: scaleX(1);
     }
   }

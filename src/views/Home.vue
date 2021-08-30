@@ -41,6 +41,26 @@
       </div>
     </section>
 
+    <section class="home-presentation">
+      <div class="container">
+        <div class="home-presentation__img">
+          <img src="@/assets/images/home-presentation--dark.svg" alt="" />
+        </div>
+
+        <div class="home-presentation__content">
+          <h2 class="title-h1 home-presentation__title">Презентации</h2>
+          <div class="home-presentation__slider">
+            <div>
+              <MainSlider />
+            </div>
+          </div>
+          <p class="title-h2 home-presentation__description">
+            Итальянская грамматика наглядно и доступно
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- Что дальше? -->
     <InfoSection
       title="Что дальше?"
@@ -83,10 +103,11 @@
 import { mapState, mapActions } from "vuex";
 import InfoSection from "@/components/Sections/InfoSection.vue";
 import MaterialBlock from "@/components/Blocks/MaterialBlock.vue";
+import MainSlider from "@/components/MainSlider.vue";
 
 export default {
   name: "Home",
-  components: { InfoSection, MaterialBlock },
+  components: { InfoSection, MaterialBlock, MainSlider },
   computed: {
     ...mapState(["blogCategory", "grammarList"]),
   },
@@ -181,6 +202,48 @@ export default {
 
     @media (max-width: 768px) {
       margin-bottom: 40px;
+    }
+  }
+}
+
+.home-presentation {
+  background-color: $white;
+
+  & .container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    align-items: center;
+    gap: 100px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: minmax(100px, 1fr);
+      gap: 40px;
+    }
+  }
+
+  &__img img {
+    width: 100%;
+  }
+
+  &__content {
+    @media (max-width: 768px) {
+      order: -1;
+    }
+  }
+
+  &__title {
+    margin-bottom: 30px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__description {
+    margin-top: 25px;
+
+    @media (max-width: 768px) {
+      margin-top: 15px;
     }
   }
 }

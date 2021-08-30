@@ -30,9 +30,10 @@ export default {
 @import "swiper/components/navigation/navigation.scss";
 .c-slider {
   &__item {
+    max-width: 100%;
     padding: 60px 30px;
 
-    background-color: $grey-bg;
+    background-color: #F7F7F7;
 
     &:nth-child(2n) {
       background-color: $green;
@@ -57,9 +58,9 @@ export default {
     width: 60px;
     height: 70px;
 
-    color: $white;
+    color: white;
     background-color: $green;
-    border: 1px solid $black;
+    border: 1px solid black;
     transition: $transition;
     z-index: 3;
 
@@ -90,8 +91,8 @@ export default {
   }
   & .swiper-button-disabled {
     opacity: 1;
-    color: $black;
-    background-color: $white;
+    color: black;
+    background-color: white;
   }
 }
 .slider__item {

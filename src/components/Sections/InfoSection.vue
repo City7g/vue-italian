@@ -23,15 +23,21 @@
         class="info-section__img"
         :class="{ 'info-section__img--first': isFirstImg }"
       >
-        <img :src="require(`@/assets/images/${img}`)" alt="" />
+        <BaseIcon>
+          <HomeFirst width="570" height="348" />
+        </BaseIcon>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import BaseIcon from "@/components/BaseIcon.vue";
+import HomeFirst from "@/components/Icons/Section/HomeFirst.vue";
+
 export default {
   name: "InfoSection",
+  components: { BaseIcon, HomeFirst },
   props: {
     title: {
       type: String,

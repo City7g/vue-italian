@@ -68,7 +68,7 @@ export default {
   // justify-content: center;
   // align-items: flex-start;
 
-  padding: 50px 100px;
+  padding: 50px 100px 20px;
 
   background-color: $white;
   overflow: auto;
@@ -77,11 +77,13 @@ export default {
   @media (max-width: 768px) {
     width: 350px;
 
-    padding: 120px 65px;
+    padding: 120px 65px 20px;
   }
 
   @media (max-width: 450px) {
     width: 100%;
+
+    padding: 100px 50px 20px;
   }
 
   @media (max-width: 350px) {
@@ -89,17 +91,12 @@ export default {
   }
 
   &__close {
-    display: none;
     position: absolute;
     top: 15px;
     left: 15px;
     padding: 7px;
 
     cursor: pointer;
-
-    @media (max-width: 768px) {
-      display: block;
-    }
   }
 
   &__wrap {

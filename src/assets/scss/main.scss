@@ -5,6 +5,24 @@
 @import '_btns.scss';
 @import '_link.scss';
 
+// Ligth theme
+:root {
+  --green: #39B100;
+  --red: #EF4036;
+  --main-text: #000;
+  --main-text--light: #1e1e1e;
+  --main-bg: #fff;
+  --main-bg--light: #bebebe;
+}
+
+// Dark theme
+// :root {
+//   --green: #39B100;
+//   --red: #EF4036;
+//   --main-text: #fff;
+//   --main-bg: #251C1C;
+// }
+
 *,
 *:before,
 *:after {
@@ -21,6 +39,7 @@ html {
 body {
   font-family: 'Circe';
   color: $black;
+  background-color: $white;
 }
 
 ::selection {
@@ -32,6 +51,11 @@ img {
   max-width: 100%;
   user-select: none;
   display: flex;
+}
+
+svg {
+  max-width: 100%;
+  height: auto;
 }
 
 button {
@@ -76,4 +100,12 @@ input[type="radio"]:focus:checked ~ label {
 
 ul {
   list-style: none;
+}
+
+section, header, footer {
+  transition: $transition-theme background-color ease;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+  transition: $transition-theme color ease;
 }
