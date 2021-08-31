@@ -241,10 +241,13 @@ export default {
 
     background-color: $white;
 
-    &.active,
-    &:focus-within {
+    &.active {
       transform: scaleX(1);
     }
+
+    // &:focus-visible:focus-within {
+    //   transform: scaleX(1);
+    // }
   }
 
   &__list {
