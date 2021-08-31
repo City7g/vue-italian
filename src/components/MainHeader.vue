@@ -142,8 +142,8 @@ export default {
     window.addEventListener("scroll", this.addHeaderShadow);
   },
   beforeUnmount() {
-    document.addEventListener("keyup", this.supportNavigation);
-    window.addEventListener("scroll", this.addHeaderShadow);
+    window.removeEventListener("resize", this.addSocialToMenu);
+    window.removeEventListener("scroll", this.addHeaderShadow);
   },
 };
 </script>
