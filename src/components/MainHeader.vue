@@ -2,7 +2,9 @@
   <header class="header" :class="{ 'header--shadow': isHeaderShadow }">
     <div class="container">
       <router-link to="/" class="header-logo">
-        <img src="@/assets/images/logo.svg" alt="" />
+        <BaseIcon :width="53" :height="27" >
+          <Logo />
+        </BaseIcon>
       </router-link>
 
       <nav class="header-nav" :class="{ active: isOpenMenu }">
@@ -55,9 +57,14 @@
 
 <script>
 import { mapActions } from "vuex";
+import BaseIcon from "@/components/BaseIcon.vue";
+import Logo from "@/components/Icons/Logo.vue";
 
 export default {
   name: "MainHeader",
+  components: {
+    BaseIcon, Logo
+  },
   data() {
     return {
       isHeaderShadow: false,
@@ -245,7 +252,7 @@ export default {
       transform: scaleX(1);
     }
 
-    // &:focus-visible:focus-within {
+    // &:focus-within {
     //   transform: scaleX(1);
     // }
   }

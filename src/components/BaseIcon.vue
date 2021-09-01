@@ -1,9 +1,9 @@
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    :width="570"
-    :height="348"
-    viewBox="0 0 570 348"
+    :width="width"
+    :height="height"
+    :viewBox='`0 0 ${width} ${height}`'
     :aria-labelledby="iconName"
     role="presentation"
     fill="red"
@@ -23,11 +23,11 @@ export default {
       default: "box",
     },
     width: {
-      type: [Number, String],
+      type: Number,
       default: 18,
     },
     height: {
-      type: [Number, String],
+      type: Number,
       default: 18,
     },
     iconColor: {

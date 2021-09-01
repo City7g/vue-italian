@@ -23,8 +23,8 @@
         class="info-section__img"
         :class="{ 'info-section__img--first': isFirstImg }"
       >
-        <BaseIcon>
-          <HomeFirst width="570" height="348" />
+        <BaseIcon :width="570" :height="348">
+          <HomeFirst />
         </BaseIcon>
       </div>
     </div>
