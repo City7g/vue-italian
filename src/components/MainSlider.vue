@@ -7,7 +7,7 @@
       class="slider__one"
     >
       <swiper-slide v-for="item in 10" :key="item" class="c-slider__item">
-        <img src="@/assets/images/slider/item-1.svg" alt="" />
+        <ItemCat />
       </swiper-slide>
     </swiper>
   </div>
@@ -16,12 +16,14 @@
 <script>
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
+// Images
+import ItemCat from "@/assets/images/slider/item-1.svg?inline";
 
 SwiperCore.use([Navigation]);
 
 export default {
   name: "MainSlider",
-  components: { Swiper, SwiperSlide },
+  components: { Swiper, SwiperSlide, ItemCat },
 };
 </script>
 
@@ -33,7 +35,8 @@ export default {
     max-width: 100%;
     padding: 60px 30px;
 
-    background-color: #F7F7F7;
+    background-color: #f7f7f7;
+    text-align: center;
 
     &:nth-child(2n) {
       background-color: $green;

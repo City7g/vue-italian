@@ -1,0 +1,17 @@
+section, header, footer, .standart-head {
+  transition: $transition-theme background-color ease;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+  transition: $transition-theme color ease;
+}
+
+.fill-white {
+  fill: $white;
+  transition: $transition-theme fill ease;
+}
+
+.fill-black {
+  fill: $black;
+  transition: $transition-theme fill ease;
+}

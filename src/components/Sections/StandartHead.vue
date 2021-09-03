@@ -1,12 +1,24 @@
 <template>
   <div class="standart-head">
-    <img :src="require(`@/assets/images/${page}-head.svg`)" alt="" />
+    <component :is="page" />
   </div>
 </template>
 
 <script>
+// Images
+import presentation from "@/assets/images/presentation-head.svg?inline";
+import materials from "@/assets/images/materials-head.svg?inline";
+import media from "@/assets/images/media-head.svg?inline";
+import about from "@/assets/images/about-head.svg?inline";
+
 export default {
   name: "StandartHead",
+  components: {
+    presentation,
+    materials,
+    media,
+    about
+  },
   props: {
     page: {
       type: String,
@@ -20,7 +32,10 @@ export default {
 .standart-head {
   overflow: hidden;
 
-  & img {
+  background-color: $white;
+
+  & img,
+  & svg {
     max-width: none;
     min-width: 100%;
 

@@ -44,7 +44,7 @@
     <section class="home-presentation">
       <div class="container">
         <div class="home-presentation__img">
-          <img src="@/assets/images/home-presentation--dark.svg" alt="" />
+          <HomePresentation />
         </div>
 
         <div class="home-presentation__content">
@@ -104,10 +104,12 @@ import { mapState, mapActions } from "vuex";
 import InfoSection from "@/components/Sections/InfoSection.vue";
 import MaterialBlock from "@/components/Blocks/MaterialBlock.vue";
 import MainSlider from "@/components/MainSlider.vue";
+// Images
+import HomePresentation from "@/assets/images/home-presentation.svg?inline";
 
 export default {
   name: "Home",
-  components: { InfoSection, MaterialBlock, MainSlider },
+  components: { InfoSection, MaterialBlock, MainSlider,HomePresentation },
   computed: {
     ...mapState(["blogCategory", "grammarList"]),
   },
@@ -221,7 +223,8 @@ export default {
     }
   }
 
-  &__img img {
+  &__img img,
+  &__img svg {
     width: 100%;
   }
 

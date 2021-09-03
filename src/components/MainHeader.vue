@@ -2,9 +2,7 @@
   <header class="header" :class="{ 'header--shadow': isHeaderShadow }">
     <div class="container">
       <router-link to="/" class="header-logo">
-        <BaseIcon :width="53" :height="27" >
-          <Logo />
-        </BaseIcon>
+        <Logo />
       </router-link>
 
       <nav class="header-nav" :class="{ active: isOpenMenu }">
@@ -57,14 +55,12 @@
 
 <script>
 import { mapActions } from "vuex";
-import BaseIcon from "@/components/BaseIcon.vue";
-import Logo from "@/components/Icons/Logo.vue";
+// Images
+import Logo from "@/assets/images/logo.svg?inline";
 
 export default {
   name: "MainHeader",
-  components: {
-    BaseIcon, Logo
-  },
+  components: { Logo },
   data() {
     return {
       isHeaderShadow: false,
@@ -131,7 +127,7 @@ export default {
     changeTheme() {
       if (this.isLightTheme) {
         document.body.style.setProperty("--main-text", "#fff");
-        document.body.style.setProperty("--main-text--light", "#bebebe");
+        document.body.style.setProperty("--main-text--light", "#F7F7F7");
         document.body.style.setProperty("--main-bg", "#000");
         document.body.style.setProperty("--main-bg--light", "#1e1e1e");
       } else {
@@ -280,6 +276,7 @@ export default {
   &__link.router-link-exact-active,
   &__link:focus {
     color: $green;
+    transition: 8s color ease;
     // outline-offset: 2px;
   }
 }

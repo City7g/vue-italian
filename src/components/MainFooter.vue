@@ -1,10 +1,18 @@
 <template>
   <footer class="footer">
-    <img src="@/assets/images/footer-cat-foot.svg" alt="" class="footer-cat-foot">
-    <img src="@/assets/images/footer-cat-foot.svg" alt="" class="footer-cat-foot">
+    <img
+      src="@/assets/images/footer-cat-foot.svg"
+      alt=""
+      class="footer-cat-foot"
+    />
+    <img
+      src="@/assets/images/footer-cat-foot.svg"
+      alt=""
+      class="footer-cat-foot"
+    />
     <div class="container">
       <div class="footer-first">
-        <img class="footer-first__img" src="@/assets/images/logo.svg" alt="" />
+        <Logo />
       </div>
 
       <ul class="footer-list">
@@ -35,8 +43,12 @@
 </template>
 
 <script>
+// Images
+import Logo from "@/assets/images/logo.svg?inline";
+
 export default {
   name: "MainFooter",
+  components: { Logo },
   data() {
     return {
       menuList: [

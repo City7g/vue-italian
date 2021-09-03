@@ -23,21 +23,18 @@
         class="info-section__img"
         :class="{ 'info-section__img--first': isFirstImg }"
       >
-        <BaseIcon :width="570" :height="348">
-          <HomeFirst />
-        </BaseIcon>
+        <HomeFirst />
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import BaseIcon from "@/components/BaseIcon.vue";
-import HomeFirst from "@/components/Icons/Section/HomeFirst.vue";
+import HomeFirst from "@/assets/images/home-first.svg?inline";
 
 export default {
   name: "InfoSection",
-  components: { BaseIcon, HomeFirst },
+  components: { HomeFirst },
   props: {
     title: {
       type: String,
@@ -94,10 +91,12 @@ export default {
   }
 
   &__img {
-    margin: 0 auto;
-
     &--first {
       order: -1;
+    }
+
+    & svg {
+      width: 100%;
     }
   }
 

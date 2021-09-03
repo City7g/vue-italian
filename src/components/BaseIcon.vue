@@ -6,7 +6,7 @@
     :viewBox='`0 0 ${width} ${height}`'
     :aria-labelledby="iconName"
     role="presentation"
-    fill="red"
+    fill="yellow"
     class="c-svg"
   >
     <title :id="iconName" lang="en">{{ iconName }} icon</title>
@@ -41,16 +41,21 @@ export default {
 <style lang="scss">
 .c-svg {
   fill: $white;
-  transition: 3s all ease;
+  transition: $transition-theme all ease;
 }
 
 .svg-black {
   fill: $black;
-  transition: 3s all ease;
+  transition: $transition-theme all ease;
+}
+
+.svg-white {
+  fill: $white;
+  transition: $transition-theme all ease;
 }
 
 .svg-black--light {
   fill: $grey-bg;
-  transition: 3s all ease;
+  transition: $transition-theme all ease;
 }
 </style>
