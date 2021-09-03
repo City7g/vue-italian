@@ -36,11 +36,11 @@ export default {
 .presentation-slider {
   &__wrap {
     display: grid;
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(2, minmax(200px, calc(50% - 12px)));
+    gap: 24px;
 
     @media (max-width: 768px) {
-      grid-template-columns: 1fr;
+      grid-template-columns: 100%;
     }
   }
 
