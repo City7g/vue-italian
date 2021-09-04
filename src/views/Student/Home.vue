@@ -86,7 +86,15 @@ export default {
   padding: 20px;
 
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0 auto 0 140px;
+
+  @media (max-width: 1899px) {
+    margin: 0 auto 0 80px;
+  }
+
+  @media (max-width: 1440px) {
+    margin: 0 auto;
+  }
 }
 
 .info-bar {
@@ -165,6 +173,11 @@ export default {
 
     @media (max-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 320px) {
+      grid-template-columns: 1fr;
       gap: 20px;
     }
   }

@@ -1,5 +1,13 @@
 <template>
-  <div class="student-aside">
+  <div
+    class="student-aside"
+    :class="{ 'student-aside--shadow': isStudentSidebarShadow }"
+  >
+    <MenuHamburger
+      v-model:active="isOpenMenu"
+      class="student-aside-hamburger"
+    />
+
     <MainLogo class="student-aside-logo" />
 
     <div class="student-aside-social">
@@ -47,7 +55,7 @@
       </button>
     </div>
 
-    <ul class="student-aside-nav">
+    <ul class="student-aside-nav" :class="{ active: isOpenMenu }">
       <li
         v-for="item in navList"
         :key="item.name"
@@ -86,12 +94,15 @@
 </template>
 
 <script>
+import MenuHamburger from "@/components/MenuHamburger.vue";
 import MainLogo from "@/components/MainLogo.vue";
 
 export default {
-  components: { MainLogo },
+  components: { MenuHamburger, MainLogo },
   data() {
     return {
+      isStudentSidebarShadow: false,
+      isOpenMenu: false,
       userNotification: false,
       navList: [
         {
@@ -133,6 +144,30 @@ export default {
       ],
     };
   },
+  methods: {
+    addHeaderShadow() {
+      if (window.pageYOffset > 100) {
+        this.isStudentSidebarShadow = true;
+      } else {
+        this.isStudentSidebarShadow = false;
+      }
+    },
+  },
+  watch: {
+    isOpenMenu(old) {
+      if(old) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    }
+  },
+  mounted() {
+    window.addEventListener("scroll", this.addHeaderShadow);
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.addHeaderShadow);
+  },
 };
 </script>
 
@@ -148,10 +183,11 @@ export default {
   gap: 60px 20px;
 
   height: 100vh;
-  padding: 20px 28px 30px 120px;
+  padding: 20px 30px 30px 150px;
   overflow: auto;
 
   background-color: $white;
+  border-right: 1px solid $black;
 
   scrollbar-width: none;
 
@@ -159,14 +195,34 @@ export default {
     grid-column: 1 / -1;
   }
 
+  @media (max-width: 1649px) {
+    padding-left: 120px;
+  }
+
+  @media (max-width: 1199px) {
+    gap: 30px 20px;
+
+    padding-left: 60px;
+    padding-right: 20px;
+  }
+
   @media (max-width: 991px) {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0;
 
+    width: 100%;
+    max-width: 900px;
     height: 50px;
-    border: 1px solid red;
-    padding: 0;
+    padding: 0 20px;
+    margin: 0 auto;
+
+    border-right: none;
+
+    &--shadow {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
   }
 }
 
@@ -264,7 +320,24 @@ export default {
 
 .student-aside-nav {
   @media (max-width: 991px) {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    max-width: 300px;
+    padding: 50px 40px 20px;
+    transform: scaleX(0);
+    transition: 0.3s transform ease, $transition-theme background-color ease;
+    transform-origin: left;
+    z-index: 10;
+
+    background-color: $white;
+
+    &.active {
+      transform: scaleX(1);
+    }
   }
 
   &__item {
@@ -272,6 +345,10 @@ export default {
 
     &--special {
       margin: 65px 0;
+
+      @media (max-width: 1199px) {
+        margin: 35px 0;
+      }
     }
   }
 
@@ -305,9 +382,18 @@ export default {
 
   &__special {
     position: absolute;
-    left: -120px;
+    left: -150px;
     top: 50%;
     transform: translateY(-50%);
+
+    @media (max-width: 1649px) {
+      left: -120px;
+    }
+
+    @media (max-width: 1149px) {
+      width: 80px;
+      left: -60px;
+    }
   }
 
   &__text {
@@ -323,6 +409,14 @@ export default {
     &--special:hover {
       color: $red;
     }
+  }
+}
+
+.student-aside-hamburger {
+  margin-right: 28px;
+
+  @media (max-width: 319px) {
+    margin-right: 18px;
   }
 }
 </style>

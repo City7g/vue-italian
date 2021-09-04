@@ -21,10 +21,17 @@ export default {
 <style lang="scss">
 .layout-main {
   display: grid;
-  grid-template-columns: 400px 1fr;
-  justify-content: center;
+  grid-template-columns: 500px 1fr;
 
   min-height: 100vh;
+
+  @media (max-width: 1649px) {
+    grid-template-columns: 400px 1fr;
+  }
+
+  @media (max-width: 1199px) {
+    grid-template-columns: 300px 1fr;
+  }
 
   @media (max-width: 991px) {
     grid-template-columns: 1fr;

@@ -54,134 +54,138 @@ export default {
 </script>
 
 <style lang="scss">
-.popup-login {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 50vw;
-  z-index: 100;
+// .popup-login {
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   width: 50vw;
+//   z-index: 100;
 
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: flex-start;
+//   // display: flex;
+//   // flex-direction: column;
+//   // justify-content: center;
+//   // align-items: flex-start;
 
-  padding: 150px 100px 40px;
+//   padding: 150px 100px 40px;
 
-  background-color: $white;
-  overflow: auto;
-  scrollbar-width: none;
+//   background-color: $white;
+//   overflow: auto;
+//   scrollbar-width: none;
 
-  @media (max-width: 768px) {
-    width: 350px;
+//   @media (max-width: 1499px) {
+//     padding: 120px 70px 40px;
+//   }
 
-    padding: 120px 65px 40px;
-  }
+//   @media (max-width: 767px) {
+//     width: 350px;
 
-  @media (max-width: 450px) {
-    width: 100%;
+//     padding: 120px 65px 40px;
+//   }
 
-    padding: 100px 50px 40px;
-  }
+//   @media (max-width: 450px) {
+//     width: 100%;
 
-  @media (max-width: 350px) {
-    padding: 80px 35px;
-  }
+//     padding: 100px 50px 40px;
+//   }
 
-  &__close {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    padding: 7px;
+//   @media (max-width: 350px) {
+//     padding: 80px 35px;
+//   }
 
-    cursor: pointer;
-  }
+//   &__close {
+//     position: absolute;
+//     top: 15px;
+//     left: 15px;
+//     padding: 7px;
 
-  &__wrap {
-    max-width: 310px;
-  }
+//     cursor: pointer;
+//   }
 
-  &__title {
-    margin-bottom: 30px;
+//   &__wrap {
+//     max-width: 310px;
+//   }
 
-    @media (max-width: 768px) {
-      margin-bottom: 15px;
-    }
-  }
+//   &__title {
+//     margin-bottom: 30px;
 
-  &__description {
-    margin-bottom: 30px;
-  }
+//     @media (max-width: 768px) {
+//       margin-bottom: 15px;
+//     }
+//   }
 
-  &__text {
-    margin-top: 40px;
+//   &__description {
+//     margin-bottom: 30px;
+//   }
 
-    text-align: center;
-  }
+//   &__text {
+//     margin-top: 40px;
 
-  &__social {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+//     text-align: center;
+//   }
 
-    margin-top: 5px;
+//   &__social {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
 
-    & li {
-      margin: 0 6px;
-    }
-  }
+//     margin-top: 5px;
 
-  &__form {
-    & button {
-      margin-top: 25px;
-    }
-  }
-}
+//     & li {
+//       margin: 0 6px;
+//     }
+//   }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
+//   &__form {
+//     & button {
+//       margin-top: 25px;
+//     }
+//   }
+// }
 
-input {
-  padding: 13px 50px;
-  margin-bottom: 15px;
+// form {
+//   display: flex;
+//   flex-direction: column;
+// }
 
-  font-family: "Circe";
-  font-size: 16px;
-  line-height: 27px;
+// input {
+//   padding: 13px 50px;
+//   margin-bottom: 15px;
 
-  color: $black;
-  background-color: $white;
-  background-size: auto;
-  background-repeat: no-repeat;
-  background-position: 23px center;
-  border: 1px solid $grey-disabled;
-  border-radius: $border;
+//   font-family: "Circe";
+//   font-size: 16px;
+//   line-height: 27px;
 
-  @media (max-width: 768px) {
-    padding: 10px 20px 10px 34px;
-    margin-bottom: 10px;
+//   color: $black;
+//   background-color: $white;
+//   background-size: auto;
+//   background-repeat: no-repeat;
+//   background-position: 23px center;
+//   border: 1px solid $grey-disabled;
+//   border-radius: $border;
 
-    background-position: 12px center;
-  }
+//   @media (max-width: 768px) {
+//     padding: 10px 20px 10px 34px;
+//     margin-bottom: 10px;
 
-  &:focus {
-    border: 1px solid $black;
-    outline: none;
-  }
-}
+//     background-position: 12px center;
+//   }
 
-input[type="text"] {
-  background-image: url(~@/assets/images/user-icon-input.svg);
-}
+//   &:focus {
+//     border: 1px solid $black;
+//     outline: none;
+//   }
+// }
 
-input[type="email"] {
-  background-image: url(~@/assets/images/mail-icon-input.svg);
-}
+// input[type="text"] {
+//   background-image: url(~@/assets/images/user-icon-input.svg);
+// }
 
-input[type="password"] {
-  background-image: url(~@/assets/images/lock-icon-input.svg);
-}
+// input[type="email"] {
+//   background-image: url(~@/assets/images/mail-icon-input.svg);
+// }
+
+// input[type="password"] {
+//   background-image: url(~@/assets/images/lock-icon-input.svg);
+// }
 </style>

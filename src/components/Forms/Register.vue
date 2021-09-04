@@ -74,6 +74,10 @@ export default {
   overflow: auto;
   scrollbar-width: none;
 
+  @media (max-width: 1499px) {
+    padding: 80px 65px 40px;
+  }
+
   @media (max-width: 768px) {
     width: 350px;
 

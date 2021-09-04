@@ -1,5 +1,8 @@
 <template>
-  <header class="header" :class="{ 'header--shadow': isHeaderShadow }">
+  <header
+    class="header"
+    :class="{ 'header--shadow': isHeaderShadow }"
+  >
     <div class="container">
       <MainLogo class="header-logo" />
 
@@ -40,15 +43,7 @@
         <button class="small-btn" @click="changeTheme">Тема</button>
       </div>
 
-      <button
-        class="header-hamburger"
-        :class="{ active: isOpenMenu }"
-        @click="isOpenMenu = !isOpenMenu"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <MenuHamburger v-model:active="isOpenMenu" class="header-hamburger" />
     </div>
   </header>
 </template>
@@ -56,10 +51,11 @@
 <script>
 import { mapActions } from "vuex";
 import MainLogo from "@/components/MainLogo.vue";
+import MenuHamburger from "@/components/MenuHamburger.vue";
 
 export default {
   name: "MainHeader",
-  components: { MainLogo },
+  components: { MainLogo, MenuHamburger },
   data() {
     return {
       isHeaderShadow: false,
@@ -116,13 +112,13 @@ export default {
           .after(document.querySelector(".header-social"));
       }
     },
-    addHeaderShadow() {
-      if (window.pageYOffset > 100) {
-        this.isHeaderShadow = true;
-      } else {
-        this.isHeaderShadow = false;
-      }
-    },
+    // addHeaderShadow() {
+    //   if (window.pageYOffset > 100) {
+    //     this.isHeaderShadow = true;
+    //   } else {
+    //     this.isHeaderShadow = false;
+    //   }
+    // },
     changeTheme() {
       if (this.isLightTheme) {
         document.body.style.setProperty("--main-text", "#fff");
@@ -141,11 +137,11 @@ export default {
   mounted() {
     this.addSocialToMenu();
     window.addEventListener("resize", this.addSocialToMenu);
-    window.addEventListener("scroll", this.addHeaderShadow);
+    // window.addEventListener("scroll", this.addHeaderShadow);
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.addSocialToMenu);
-    window.removeEventListener("scroll", this.addHeaderShadow);
+    // window.removeEventListener("scroll", this.addHeaderShadow);
   },
 };
 </script>
@@ -289,6 +285,10 @@ export default {
 
   &__button ~ &__button {
     margin-left: 10px;
+
+    @media (max-width: 1199px) {
+      margin-left: 5px;
+    }
   }
 
   &__button {
@@ -331,17 +331,7 @@ export default {
 }
 
 .header-hamburger {
-  position: relative;
-  z-index: 11;
-  display: none;
-  height: 30px;
-  width: 30px;
-
   margin-left: 28px;
-
-  @media (max-width: 992px) {
-    display: block;
-  }
 
   @media (max-width: 768px) {
     margin-left: 18px;
@@ -349,49 +339,6 @@ export default {
 
   @media (max-width: 349px) {
     margin-left: 8px;
-  }
-
-  cursor: pointer;
-
-  & span {
-    display: block;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    width: 25px;
-    height: 2px;
-
-    background-color: $grey-text;
-    border-radius: $border;
-    transition: $transition;
-
-    &:first-child {
-      transform: translate(-50%, -7px);
-    }
-
-    &:nth-child(2) {
-      transform: translateX(-50%);
-    }
-
-    &:last-child {
-      transform: translate(-50%, 7px);
-    }
-  }
-
-  &.active {
-    & span:first-child {
-      transform: translate(-50%, 0) rotate(45deg);
-    }
-
-    & span:nth-child(2) {
-      opacity: 0;
-    }
-
-    & span:last-child {
-      transform: translate(-50%, 0) rotate(-45deg);
-    }
   }
 }
 </style>

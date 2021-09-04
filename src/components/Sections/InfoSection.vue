@@ -39,7 +39,14 @@ import CatNearTheBoard from "@/assets/images/cat-near-the-board.svg?inline";
 
 export default {
   name: "InfoSection",
-  components: { HomeFirst, HomeWe, HomeNext, AboutSchool, Computer, CatNearTheBoard },
+  components: {
+    HomeFirst,
+    HomeWe,
+    HomeNext,
+    AboutSchool,
+    Computer,
+    CatNearTheBoard,
+  },
   props: {
     title: {
       type: String,
@@ -96,6 +103,8 @@ export default {
   }
 
   &__img {
+    text-align: center;
+
     &--first {
       order: -1;
     }
