@@ -112,13 +112,13 @@ export default {
           .after(document.querySelector(".header-social"));
       }
     },
-    // addHeaderShadow() {
-    //   if (window.pageYOffset > 100) {
-    //     this.isHeaderShadow = true;
-    //   } else {
-    //     this.isHeaderShadow = false;
-    //   }
-    // },
+    addHeaderShadow() {
+      if (window.pageYOffset > 10) {
+        this.isHeaderShadow = true;
+      } else {
+        this.isHeaderShadow = false;
+      }
+    },
     changeTheme() {
       if (this.isLightTheme) {
         document.body.style.setProperty("--main-text", "#fff");
@@ -137,11 +137,11 @@ export default {
   mounted() {
     this.addSocialToMenu();
     window.addEventListener("resize", this.addSocialToMenu);
-    // window.addEventListener("scroll", this.addHeaderShadow);
+    window.addEventListener("scroll", this.addHeaderShadow);
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.addSocialToMenu);
-    // window.removeEventListener("scroll", this.addHeaderShadow);
+    window.removeEventListener("scroll", this.addHeaderShadow);
   },
 };
 </script>

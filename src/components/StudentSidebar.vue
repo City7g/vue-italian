@@ -38,11 +38,7 @@
     </div>
 
     <div class="student-aside-user">
-      <img
-        src="@/assets/images/user-avatar.svg"
-        alt=""
-        class="student-aside-user__avatar"
-      />
+      <UserAvatar class="student-aside-user__avatar" />
       <h4>Дмитрий Релик</h4>
       <button
         @click="userNotification = !userNotification"
@@ -67,18 +63,22 @@
           :class="{ 'student-aside-nav__link--special': item.special }"
           to="#"
         >
-          <img
+          <!-- <img
             :src="require(`@/assets/images/${item.img}-nav-icon.svg`)"
             alt=""
             class="student-aside-nav__img"
             :class="{ 'student-aside-nav__img--special': item.special }"
+          /> -->
+          <component
+            :is="item.img"
+            class="student-aside-nav__img"
+            :class="{ 'student-aside-nav__img--special': item.special }"
           />
-          <img
+          <SpecialAsideLeft
             v-if="item.special"
-            :src="require(`@/assets/images/special-aside-left.svg`)"
-            alt=""
             class="student-aside-nav__special"
           />
+
           <span
             class="student-aside-nav__text"
             :class="{
@@ -96,9 +96,30 @@
 <script>
 import MenuHamburger from "@/components/MenuHamburger.vue";
 import MainLogo from "@/components/MainLogo.vue";
+import UserAvatar from "@/assets/images/user-avatar.svg?inline";
+import SpecialAsideLeft from "@/assets/images/special-aside-left.svg?inline";
+import Group from "@/assets/images/group-nav-icon.svg?inline";
+import Vine from "@/assets/images/vine-nav-icon.svg?inline";
+import Diamond from "@/assets/images/diamond-nav-icon.svg?inline";
+import Qeen from "@/assets/images/qeen-nav-icon.svg?inline";
+import Cloud from "@/assets/images/cloud-nav-icon.svg?inline";
+import List from "@/assets/images/list-nav-icon.svg?inline";
+import Close from "@/assets/images/close-nav-icon.svg?inline";
 
 export default {
-  components: { MenuHamburger, MainLogo },
+  components: {
+    MenuHamburger,
+    MainLogo,
+    UserAvatar,
+    SpecialAsideLeft,
+    Group,
+    Vine,
+    Diamond,
+    Qeen,
+    Cloud,
+    List,
+    Close,
+  },
   data() {
     return {
       isStudentSidebarShadow: false,
@@ -108,38 +129,38 @@ export default {
         {
           name: "Груповые занятия",
           path: "/",
-          img: "group",
+          img: "Group",
         },
         {
           name: "Преподаватели",
           path: "/",
-          img: "vine",
+          img: "Vine",
         },
         {
           name: "Мой календарь",
           path: "/",
-          img: "diamond",
+          img: "Diamond",
         },
         {
           name: "Настройки",
           path: "/",
-          img: "qeen",
+          img: "Qeen",
         },
         {
           name: "Ищешь что-то особенное?",
           path: "/",
-          img: "cloud",
+          img: "Cloud",
           special: true,
         },
         {
           name: "Поддержка",
           path: "/",
-          img: "list",
+          img: "List",
         },
         {
           name: "Выйти",
           path: "/",
-          img: "close",
+          img: "Close",
         },
       ],
     };
@@ -155,12 +176,12 @@ export default {
   },
   watch: {
     isOpenMenu(old) {
-      if(old) {
-        document.body.style.overflow = 'hidden';
+      if (old) {
+        document.body.style.overflow = "hidden";
       } else {
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = "auto";
       }
-    }
+    },
   },
   mounted() {
     window.addEventListener("scroll", this.addHeaderShadow);
@@ -327,7 +348,7 @@ export default {
 
     width: 100%;
     max-width: 300px;
-    padding: 50px 40px 20px;
+    padding: 50px 20px 20px 40px;
     transform: scaleX(0);
     transition: 0.3s transform ease, $transition-theme background-color ease;
     transform-origin: left;
@@ -384,13 +405,15 @@ export default {
     position: absolute;
     left: -150px;
     top: 50%;
+    width: 120px;
+    max-height: none;
     transform: translateY(-50%);
 
     @media (max-width: 1649px) {
       left: -120px;
     }
 
-    @media (max-width: 1149px) {
+    @media (max-width: 1199px) {
       width: 80px;
       left: -60px;
     }
@@ -401,10 +424,10 @@ export default {
     z-index: 1;
 
     transition: $transition;
+  }
 
-    &:hover {
-      color: $green;
-    }
+  &__link:hover &__text {
+    color: $green;
 
     &--special:hover {
       color: $red;
