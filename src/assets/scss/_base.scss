@@ -2,10 +2,10 @@
 :root {
   --green: #39B100;
   --red: #EF4036;
-  --main-text: #000;
-  --main-text--light: #1e1e1e;
-  --main-bg: #fff;
-  --main-bg--light: #bebebe;
+  --main-text: #fff;
+  --main-text--light: #F7F7F7;
+  --main-bg: #000;
+  --main-bg--light: #1e1e1e;
 }
 
 // Dark theme
@@ -84,11 +84,11 @@ a {
   }
 }
 
-input[type="radio"]:focus {
+input[type="radio"]:focus-visible {
   outline: none;
 }
 
-input[type="radio"]:focus:checked ~ label {
+input[type="radio"]:focus-visible:checked ~ label {
   outline: 2px solid $black;
   outline-offset: 2px;
 }

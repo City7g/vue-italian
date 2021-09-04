@@ -1,8 +1,6 @@
 <template>
-  <aside class="student-aside">
-    <router-link to="/" class="student-aside-logo">
-      <img src="@/assets/images/logo.svg" alt="" />
-    </router-link>
+  <div class="student-aside">
+    <MainLogo class="student-aside-logo" />
 
     <div class="student-aside-social">
       <!-- <li>
@@ -84,11 +82,14 @@
         </router-link>
       </li>
     </ul>
-  </aside>
+  </div>
 </template>
 
 <script>
+import MainLogo from "@/components/MainLogo.vue";
+
 export default {
+  components: { MainLogo },
   data() {
     return {
       userNotification: false,
@@ -137,22 +138,35 @@ export default {
 
 <style lang="scss">
 .student-aside {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-content: flex-start;
-  align-items: center;
   gap: 60px 20px;
 
+  height: 100vh;
   padding: 20px 28px 30px 120px;
+  overflow: auto;
 
-  border-right: 1px solid $grey-text;
+  background-color: $white;
+
+  scrollbar-width: none;
 
   & > * {
     grid-column: 1 / -1;
   }
 
-  @media (max-width: 768px) {
-    display: none;
+  @media (max-width: 991px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 50px;
+    border: 1px solid red;
+    padding: 0;
   }
 }
 
@@ -169,12 +183,8 @@ export default {
   justify-content: center;
   align-content: inherit;
 
-  @media (max-width: 992px) {
-    margin-right: 28px;
-  }
-
-  @media (max-width: 768px) {
-    margin-top: 40px;
+  @media (max-width: 991px) {
+    margin-left: auto;
   }
 
   &__button ~ &__button {
@@ -216,6 +226,10 @@ export default {
   background-color: $grey-bg;
   border-radius: $border;
 
+  @media (max-width: 991px) {
+    display: none;
+  }
+
   &__avatar {
     margin-right: 14px;
 
@@ -249,6 +263,10 @@ export default {
 }
 
 .student-aside-nav {
+  @media (max-width: 991px) {
+    display: none;
+  }
+
   &__item {
     margin: 20px 0;
 

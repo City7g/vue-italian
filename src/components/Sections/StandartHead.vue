@@ -5,7 +5,6 @@
 </template>
 
 <script>
-// Images
 import presentation from "@/assets/images/presentation-head.svg?inline";
 import materials from "@/assets/images/materials-head.svg?inline";
 import media from "@/assets/images/media-head.svg?inline";

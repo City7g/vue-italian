@@ -1,19 +1,9 @@
 <template>
   <footer class="footer">
-    <img
-      src="@/assets/images/footer-cat-foot.svg"
-      alt=""
-      class="footer-cat-foot"
-    />
-    <img
-      src="@/assets/images/footer-cat-foot.svg"
-      alt=""
-      class="footer-cat-foot"
-    />
+    <FooterCatFoot class="footer-cat-foot" />
+    <FooterCatFoot class="footer-cat-foot" />
     <div class="container">
-      <div class="footer-first">
-        <Logo />
-      </div>
+      <MainLogo class="footer-first" />
 
       <ul class="footer-list">
         <li
@@ -43,12 +33,12 @@
 </template>
 
 <script>
-// Images
-import Logo from "@/assets/images/logo.svg?inline";
+import MainLogo from "@/components/MainLogo.vue";
+import FooterCatFoot from "@/assets/images/footer-cat-foot.svg?inline";
 
 export default {
   name: "MainFooter",
-  components: { Logo },
+  components: { MainLogo, FooterCatFoot },
   data() {
     return {
       menuList: [
@@ -157,12 +147,6 @@ export default {
 
   @media (max-width: 768px) {
     width: calc(50% + 15px);
-  }
-
-  & img {
-    @media (max-width: 1200px) {
-      height: 26px;
-    }
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="popup-login">
-    <div class="popup-login__close" @click="change_state_login">
+    <div class="popup-login__close" @click="change_state_register(false)">
       <img src="@/assets/images/popup-close-icon.svg" alt="" />
     </div>
 
@@ -45,10 +45,10 @@ import { mapActions } from "vuex";
 export default {
   name: "Login",
   methods: {
-    ...mapActions(["change_state_login"]),
+    ...mapActions(["change_state_register"]),
     login() {
       this.$router.push({ name: "StudentHome" });
-      this.change_state_login();
+      this.change_state_register(false);
     },
   },
 };
@@ -68,7 +68,7 @@ export default {
   // justify-content: center;
   // align-items: flex-start;
 
-  padding: 50px 100px 20px;
+  padding: 150px 100px 40px;
 
   background-color: $white;
   overflow: auto;
@@ -77,13 +77,13 @@ export default {
   @media (max-width: 768px) {
     width: 350px;
 
-    padding: 120px 65px 20px;
+    padding: 120px 65px 40px;
   }
 
   @media (max-width: 450px) {
     width: 100%;
 
-    padding: 100px 50px 20px;
+    padding: 100px 50px 40px;
   }
 
   @media (max-width: 350px) {
@@ -104,7 +104,7 @@ export default {
   }
 
   &__title {
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 
     @media (max-width: 768px) {
       margin-bottom: 15px;

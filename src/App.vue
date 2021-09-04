@@ -2,10 +2,13 @@
   <StudentLayout v-if="$route.meta.layout === 'student'" />
   <MainLayout v-else />
   <transition name="background">
-    <Background v-show="stateLogin" />
+    <Background v-show="stateLogin || stateRegister" />
   </transition>
   <transition name="popup">
     <Login v-show="stateLogin" />
+  </transition>
+  <transition name="popup">
+    <Register v-show="stateRegister" />
   </transition>
 </template>
 
@@ -14,7 +17,8 @@ import { mapGetters } from "vuex";
 import StudentLayout from "@/layout/StudentLayout.vue";
 import MainLayout from "@/layout/MainLayout.vue";
 import Background from "@/components/Background.vue";
-import Login from "@/components/Login.vue";
+import Login from "@/components/Forms/Login.vue";
+import Register from "@/components/Forms/Register.vue";
 
 export default {
   components: {
@@ -22,9 +26,10 @@ export default {
     MainLayout,
     Background,
     Login,
+    Register
   },
   computed: {
-    ...mapGetters(["stateLogin"]),
+    ...mapGetters(["stateLogin", "stateRegister"]),
   },
 };
 </script>

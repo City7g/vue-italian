@@ -26,7 +26,7 @@ export default {
 
   min-height: 100vh;
 
-  @media (max-width: 768px) {
+  @media (max-width: 991px) {
     grid-template-columns: 1fr;
   }
 }

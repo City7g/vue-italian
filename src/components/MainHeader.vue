@@ -1,9 +1,7 @@
 <template>
   <header class="header" :class="{ 'header--shadow': isHeaderShadow }">
     <div class="container">
-      <router-link to="/" class="header-logo">
-        <Logo />
-      </router-link>
+      <MainLogo class="header-logo" />
 
       <nav class="header-nav" :class="{ active: isOpenMenu }">
         <ul class="header-nav__list">
@@ -36,7 +34,9 @@
       </div>
 
       <div class="header-btn">
-        <button class="white-btn" @click="change_state_login">Войти</button>
+        <button class="white-btn" @click="change_state_login(true)">
+          Войти
+        </button>
         <button class="small-btn" @click="changeTheme">Тема</button>
       </div>
 
@@ -55,12 +55,11 @@
 
 <script>
 import { mapActions } from "vuex";
-// Images
-import Logo from "@/assets/images/logo.svg?inline";
+import MainLogo from "@/components/MainLogo.vue";
 
 export default {
   name: "MainHeader",
-  components: { Logo },
+  components: { MainLogo },
   data() {
     return {
       isHeaderShadow: false,
@@ -132,7 +131,7 @@ export default {
         document.body.style.setProperty("--main-bg--light", "#1e1e1e");
       } else {
         document.body.style.setProperty("--main-text", "#000");
-        document.body.style.setProperty("--main-text--light", "#1e1e1e");
+        document.body.style.setProperty("--main-text--light", "#131313");
         document.body.style.setProperty("--main-bg", "#fff");
         document.body.style.setProperty("--main-bg--light", "#bebebe");
       }
@@ -170,7 +169,7 @@ export default {
 
     height: 80px;
 
-    @media (max-width: 1200px) {
+    @media (max-width: 991px) {
       height: 50px;
     }
   }
@@ -179,12 +178,6 @@ export default {
 .header-logo {
   @media (max-width: 992px) {
     margin-right: auto;
-  }
-
-  & img {
-    @media (max-width: 1200px) {
-      height: 26px;
-    }
   }
 }
 

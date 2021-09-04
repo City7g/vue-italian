@@ -23,7 +23,7 @@
         class="info-section__img"
         :class="{ 'info-section__img--first': isFirstImg }"
       >
-        <HomeFirst />
+        <component :is="img" />
       </div>
     </div>
   </section>
@@ -31,10 +31,15 @@
 
 <script>
 import HomeFirst from "@/assets/images/home-first.svg?inline";
+import HomeWe from "@/assets/images/home-we.svg?inline";
+import HomeNext from "@/assets/images/home-next.svg?inline";
+import AboutSchool from "@/assets/images/about-school.svg?inline";
+import Computer from "@/assets/images/computer.svg?inline";
+import CatNearTheBoard from "@/assets/images/cat-near-the-board.svg?inline";
 
 export default {
   name: "InfoSection",
-  components: { HomeFirst },
+  components: { HomeFirst, HomeWe, HomeNext, AboutSchool, Computer, CatNearTheBoard },
   props: {
     title: {
       type: String,
@@ -96,7 +101,7 @@ export default {
     }
 
     & svg {
-      width: 100%;
+      width: 80%;
     }
   }
 

@@ -7,9 +7,11 @@
             раскладываем язык по полочкам, проникаем в самую его суть и
             вытаскиваем из недр самое нужное."
       button="Начать обучение"
-      img="home-first.svg"
+      img="HomeFirst"
     >
-      <button class="main-btn" @click="change_state_login">Начать</button>
+      <button class="main-btn" @click="change_state_register(true)">
+        Начать
+      </button>
     </InfoSection>
 
     <!-- Кто мы? -->
@@ -21,7 +23,7 @@
             от барьеров и препятствий, ищем интересное, знакомимся, общаемся и
             дружим! Мы за гибкость и интерактивность.<br /><br />Хочешь узнать
             больше? Жми!"
-      img="home-we.svg"
+      img="HomeWe"
       isGrey
       isFirstImg
       isHomeWeClewImg
@@ -67,10 +69,12 @@
       description="Exercitation enim non Lorem nostrud nisi commodo aliqua dolor eu
             tempor veniam non nisi do. Cillum sunt aliquip eu proident excepteur
             aute nostrud eiusmod dolore non voluptate laborum."
-      img="home-next.svg"
+      img="HomeNext"
       isGrey
     >
-      <button class="main-btn" @click="change_state_login">Начать</button>
+      <button class="main-btn" @click="change_state_register(true)">
+        Начать
+      </button>
     </InfoSection>
 
     <section class="home-blog">
@@ -104,17 +108,16 @@ import { mapState, mapActions } from "vuex";
 import InfoSection from "@/components/Sections/InfoSection.vue";
 import MaterialBlock from "@/components/Blocks/MaterialBlock.vue";
 import MainSlider from "@/components/MainSlider.vue";
-// Images
 import HomePresentation from "@/assets/images/home-presentation.svg?inline";
 
 export default {
   name: "Home",
-  components: { InfoSection, MaterialBlock, MainSlider,HomePresentation },
+  components: { InfoSection, MaterialBlock, MainSlider, HomePresentation },
   computed: {
     ...mapState(["blogCategory", "grammarList"]),
   },
   methods: {
-    ...mapActions(["change_state_login"]),
+    ...mapActions(["change_state_register"]),
   },
 };
 </script>

@@ -5,7 +5,7 @@
     <InfoSection
       title="Презентации"
       description="Studia.it предлагает новый подход к изучению итальянского языка!<br>Мы раскладываем язык по полочкам, проникаем в самую его суть и вытаскиваем из недр самое нужное."
-      img="about-school.svg"
+      img="AboutSchool"
       isFirstImg
     />
 
@@ -34,6 +34,8 @@ export default {
 
 <style lang="scss">
 .presentation-slider {
+  background-color: $white;
+
   &__wrap {
     display: grid;
     grid-template-columns: repeat(2, minmax(200px, calc(50% - 12px)));

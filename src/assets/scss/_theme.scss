@@ -1,8 +1,20 @@
-section, header, footer, .standart-head {
+section,
+header,
+footer,
+.standart-head,
+.presentation-slider,
+.student-aside {
   transition: $transition-theme background-color ease;
 }
 
-h1, h2, h3, h4, h5, h6, p, a {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
   transition: $transition-theme color ease;
 }
 
@@ -14,4 +26,21 @@ h1, h2, h3, h4, h5, h6, p, a {
 .fill-black {
   fill: $black;
   transition: $transition-theme fill ease;
+}
+
+.fill-black--white {
+  fill: $black;
+  stroke: $white;
+  transition: $transition-theme fill ease, $transition-theme stroke ease;
+}
+
+.fill-black--black {
+  fill: $black;
+  stroke: $black;
+  transition: $transition-theme fill ease, $transition-theme stroke ease;
+}
+
+.stroke-black {
+  stroke: $black;
+  transition: $transition-theme stroke ease;
 }
