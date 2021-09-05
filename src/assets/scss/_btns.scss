@@ -57,8 +57,16 @@
     line-height: 16px;
   }
 
+  @media (max-width: 991px) {
+    padding: 7px 20px;
+  }
+
+  @media (max-width: 575px) {
+    padding: 7px 12px;
+  }
+
   @media (max-width: 359px) {
-    padding: 7px 15px;
+    padding: 7px 10px;
   }
 }
 

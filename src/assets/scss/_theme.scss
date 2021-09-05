@@ -1,12 +1,12 @@
 section,
 footer,
 .standart-head,
-.presentation-slider,
-.student-aside {
+.presentation-slider {
   transition: $transition-theme background-color ease;
 }
 
-header {
+header,
+.student-aside {
   transition: $transition-theme background-color ease, 0.3s box-shadow ease;
 }
 

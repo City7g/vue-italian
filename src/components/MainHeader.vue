@@ -218,7 +218,7 @@ export default {
     right: 0;
     bottom: 0;
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
     transform: scaleX(0);
     transition: 0.3s transform ease, $transition-theme background-color ease;
     transform-origin: right;

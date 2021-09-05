@@ -173,6 +173,17 @@ export default {
         this.isStudentSidebarShadow = false;
       }
     },
+    addCardUserToMenu() {
+      if (window.innerWidth <= 991) {
+        document
+          .querySelector(".student-aside-nav")
+          .prepend(document.querySelector(".student-aside-user"));
+      } else {
+        document
+          .querySelector(".student-aside-nav")
+          .before(document.querySelector(".student-aside-user"));
+      }
+    },
   },
   watch: {
     isOpenMenu(old) {
@@ -184,10 +195,13 @@ export default {
     },
   },
   mounted() {
+    this.addCardUserToMenu();
     window.addEventListener("scroll", this.addHeaderShadow);
+    window.addEventListener("resize", this.addCardUserToMenu);
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.addHeaderShadow);
+    window.removeEventListener("resize", this.addCardUserToMenu);
   },
 };
 </script>
@@ -304,14 +318,24 @@ export default {
   border-radius: $border;
 
   @media (max-width: 991px) {
-    display: none;
+    margin-top: 0;
+    margin-bottom: 50px;
+  }
+
+  @media (max-width: 575px) {
+    padding: 16px 25px 16px 16px;
   }
 
   &__avatar {
+    width: 60px;
     margin-right: 14px;
 
     border: 2px solid $red;
     border-radius: 50%;
+
+    @media (max-width: 575px) {
+      width: 40px;
+    }
   }
 
   &__notification {
@@ -320,6 +344,11 @@ export default {
     right: 14px;
 
     cursor: pointer;
+
+    @media (max-width: 575px) {
+      top: 14px;
+      right: 11px;
+    }
 
     &:focus {
       outline-offset: 3px;
@@ -355,6 +384,12 @@ export default {
     z-index: 10;
 
     background-color: $white;
+    overflow: auto;
+
+    @media (max-width: 359px) {
+      max-width: none;
+      padding-left: 50px;
+    }
 
     &.active {
       transform: scaleX(1);
@@ -428,10 +463,10 @@ export default {
 
   &__link:hover &__text {
     color: $green;
+  }
 
-    &--special:hover {
-      color: $red;
-    }
+  &__link--special:hover &__text {
+    color: $red;
   }
 }
 

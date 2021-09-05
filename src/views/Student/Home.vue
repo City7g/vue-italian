@@ -104,9 +104,11 @@ export default {
 
   margin-bottom: 90px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     grid-template-columns: 1fr;
     gap: 13px;
+
+    margin-bottom: 50px;
   }
 }
 
@@ -149,16 +151,21 @@ export default {
 
 .special-offers {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: 20px;
 
   margin-top: 90px;
   margin-bottom: 90px;
 
-  &__btn {
-    justify-self: flex-end;
+  @media (max-width: 767px) {
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
+
+  // &__btn {
+  //   justify-self: flex-end;
+  // }
 
   &__wrap {
     grid-column: 1 / -1;

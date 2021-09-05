@@ -140,6 +140,12 @@ export default {
   &__form {
     & button {
       margin-top: 25px;
+
+      // Delete
+      @media (max-width: 1199px) {
+        padding-top: 11px;
+        padding-bottom: 11px;
+      }
     }
   }
 }
