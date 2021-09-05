@@ -1,7 +1,7 @@
 <template>
   <header
     class="header"
-    :class="{ 'header--shadow': isHeaderShadow }"
+    v-bottom-shadow="'header--shadow'"
   >
     <div class="container">
       <MainLogo class="header-logo" />
@@ -52,10 +52,12 @@
 import { mapActions } from "vuex";
 import MainLogo from "@/components/MainLogo.vue";
 import MenuHamburger from "@/components/MenuHamburger.vue";
+import bottomShadow from "@/directives/addBottomShadow.js";
 
 export default {
   name: "MainHeader",
   components: { MainLogo, MenuHamburger },
+  directives: { bottomShadow },
   data() {
     return {
       isHeaderShadow: false,
@@ -112,13 +114,6 @@ export default {
           .after(document.querySelector(".header-social"));
       }
     },
-    addHeaderShadow() {
-      if (window.pageYOffset > 10) {
-        this.isHeaderShadow = true;
-      } else {
-        this.isHeaderShadow = false;
-      }
-    },
     changeTheme() {
       if (this.isLightTheme) {
         document.body.style.setProperty("--main-text", "#fff");
@@ -137,11 +132,9 @@ export default {
   mounted() {
     this.addSocialToMenu();
     window.addEventListener("resize", this.addSocialToMenu);
-    window.addEventListener("scroll", this.addHeaderShadow);
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.addSocialToMenu);
-    window.removeEventListener("scroll", this.addHeaderShadow);
   },
 };
 </script>

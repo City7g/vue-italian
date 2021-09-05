@@ -10,22 +10,4 @@ const app = createApp(App)
   .use(store)
   .use(router)
 
-// const addBottomShadow = el => {
-//   console.log(el)
-//   if (window.pageYOffset > 100) {
-//     el.classList.add('header--shadow')
-//   } else {
-//     el.classList.remove('header--shadow')
-//   }
-// }
-
-// app.directive('add-shadow', {
-//   mounted(el) {
-//     window.addEventListener('scroll', addBottomShadow(el))
-//   },
-//   beforeUnmount(el) {
-//     window.removeEventListener('scroll', addBottomShadow(el))
-//   },
-// })
-
 app.mount('#app')

@@ -3,6 +3,7 @@
     class="main-select"
     :class="{ active: isOpen }"
     @click="isOpen = !isOpen"
+    v-click-outside
   >
     <div class="button-bold main-select__selected">
       {{ currentItem }}
@@ -109,12 +110,16 @@ export default {
   border-radius: $border;
   overflow: hidden;
   cursor: pointer;
-  transition: 0.5s max-height ease;
+  transition: 0.5s max-height linear;
+
+  &:focus {
+    outline: 2px solid red;
+  }
 
   &.active {
     max-height: 200px;
 
-    transition: 0.5s max-height ease-in-out;
+    transition: 0.5s max-height linear;
   }
 
   &__selected {

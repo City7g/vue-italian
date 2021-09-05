@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="student-aside"
-    :class="{ 'student-aside--shadow': isStudentSidebarShadow }"
-  >
+  <div class="student-aside" v-bottom-shadow="'student-aside--shadow'">
     <MenuHamburger
       v-model:active="isOpenMenu"
       class="student-aside-hamburger"
@@ -105,6 +102,7 @@ import Qeen from "@/assets/images/qeen-nav-icon.svg?inline";
 import Cloud from "@/assets/images/cloud-nav-icon.svg?inline";
 import List from "@/assets/images/list-nav-icon.svg?inline";
 import Close from "@/assets/images/close-nav-icon.svg?inline";
+import bottomShadow from "@/directives/addBottomShadow.js";
 
 export default {
   components: {
@@ -120,9 +118,9 @@ export default {
     List,
     Close,
   },
+  directives: { bottomShadow },
   data() {
     return {
-      isStudentSidebarShadow: false,
       isOpenMenu: false,
       userNotification: false,
       navList: [
@@ -166,13 +164,6 @@ export default {
     };
   },
   methods: {
-    addHeaderShadow() {
-      if (window.pageYOffset > 100) {
-        this.isStudentSidebarShadow = true;
-      } else {
-        this.isStudentSidebarShadow = false;
-      }
-    },
     addCardUserToMenu() {
       if (window.innerWidth <= 991) {
         document
@@ -196,11 +187,9 @@ export default {
   },
   mounted() {
     this.addCardUserToMenu();
-    window.addEventListener("scroll", this.addHeaderShadow);
     window.addEventListener("resize", this.addCardUserToMenu);
   },
   beforeUnmount() {
-    window.removeEventListener("scroll", this.addHeaderShadow);
     window.removeEventListener("resize", this.addCardUserToMenu);
   },
 };
