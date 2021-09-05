@@ -61,7 +61,7 @@
         <router-link
           class="student-aside-nav__link"
           :class="{ 'student-aside-nav__link--special': item.special }"
-          to="#"
+          :to="{ name: 'StudentLevel' }"
         >
           <!-- <img
             :src="require(`@/assets/images/${item.img}-nav-icon.svg`)"
@@ -224,13 +224,16 @@ export default {
   background-color: $white;
   border-right: 1px solid $black;
 
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scrollbar-color: black white;
 
   & > * {
     grid-column: 1 / -1;
   }
 
   @media (max-width: 1649px) {
+    gap: 40px 20px;
+
     padding-left: 120px;
   }
 

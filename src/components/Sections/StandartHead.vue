@@ -9,6 +9,7 @@ import presentation from "@/assets/images/presentation-head.svg?inline";
 import materials from "@/assets/images/materials-head.svg?inline";
 import media from "@/assets/images/media-head.svg?inline";
 import about from "@/assets/images/about-head.svg?inline";
+import blog from "@/assets/images/blog-head.svg?inline";
 
 export default {
   name: "StandartHead",
@@ -16,7 +17,8 @@ export default {
     presentation,
     materials,
     media,
-    about
+    about,
+    blog
   },
   props: {
     page: {

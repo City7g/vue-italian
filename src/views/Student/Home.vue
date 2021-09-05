@@ -86,7 +86,7 @@ export default {
   padding: 20px;
 
   max-width: 900px;
-  margin: 0 auto 0 140px;
+  margin: 0 auto 0 110px;
 
   @media (max-width: 1899px) {
     margin: 0 auto 0 80px;
@@ -274,6 +274,7 @@ export default {
   &__text {
     font-size: 14px;
     line-height: 20px;
+    font-weight: 400;
 
     @media (max-width: 768px) {
       font-size: 10px;
@@ -289,9 +290,18 @@ export default {
   &__link {
     margin-left: auto;
 
+    visibility: hidden;
+    opacity: 0;
+    transition: $transition;
+
     @media (max-width: 768px) {
       display: none;
     }
+  }
+
+  &:hover &__link {
+    visibility: visible;
+    opacity: 1;
   }
 }
 </style>

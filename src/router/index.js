@@ -48,6 +48,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "Start" */ '../views/Start.vue'),
   },
+  // Student
   {
     path: '/home',
     name: 'StudentHome',
@@ -56,6 +57,15 @@ const routes = [
     },
     component: () =>
       import(/* webpackChunkName: "StudentHome" */ '../views/Student/Home.vue'),
+  },
+  {
+    path: '/level',
+    name: 'StudentLevel',
+    meta: {
+      layout: 'student'
+    },
+    component: () =>
+      import(/* webpackChunkName: "StudentLevel" */ '../views/Student/Level.vue'),
   },
   {
     path: '/error',

@@ -35,6 +35,7 @@ import HomeWe from "@/assets/images/home-we.svg?inline";
 import HomeNext from "@/assets/images/home-next.svg?inline";
 import AboutSchool from "@/assets/images/about-school.svg?inline";
 import Computer from "@/assets/images/computer.svg?inline";
+import BlogImg from "@/assets/images/blog-img.svg?inline";
 import CatNearTheBoard from "@/assets/images/cat-near-the-board.svg?inline";
 
 export default {
@@ -45,6 +46,7 @@ export default {
     HomeNext,
     AboutSchool,
     Computer,
+    BlogImg,
     CatNearTheBoard,
   },
   props: {
