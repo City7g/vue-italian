@@ -3,7 +3,6 @@
     class="main-select"
     :class="{ active: isOpen }"
     @click="isOpen = !isOpen"
-    v-click-outside
   >
     <div class="button-bold main-select__selected">
       {{ currentItem }}
@@ -85,9 +84,7 @@ export default {
   mounted() {
     window.addEventListener("click", (e) => {
       // if (e.target.contains(document.querySelector(".main-select"))) {
-      if (document.querySelector(".main-select").contains(e.target)) {
-        console.log(1);
-      } else {
+      if (!document.querySelector(".main-select").contains(e.target)) {
         this.isOpen = false;
       }
     });
