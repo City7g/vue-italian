@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="!isMobileDevice"
     class="main-select"
     :class="{ active: isOpen }"
     @click="isOpen = !isOpen"
@@ -33,6 +34,12 @@
       />
     </svg>
   </div>
+
+  <select v-else class="basic-select" v-model="currentValue">
+    <option v-for="item in selectValues" :key="item.id" value="item.id">
+      {{ item.value }}
+    </option>
+  </select>
 </template>
 
 <script>
@@ -73,12 +80,23 @@ export default {
       this.currentValue = id;
     },
   },
+  watch: {
+    currentValue(newValue) {
+      console.log(newValue);
+    },
+  },
   computed: {
     currentItem() {
       return this.selectValues.find((c) => c.id === this.currentValue).value;
     },
     showItems() {
       return this.selectValues.filter((c) => c.id !== this.currentValue);
+    },
+
+    isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
     },
   },
   mounted() {
@@ -140,5 +158,9 @@ export default {
       transform: rotate(180deg);
     }
   }
+}
+
+.basic-select {
+  padding: 8px;
 }
 </style>

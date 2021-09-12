@@ -44,7 +44,7 @@ export default {
       menuList: [
         {
           title: "Обучение",
-          path: "/",
+          path: "/navigator",
         },
         {
           title: "Блог",

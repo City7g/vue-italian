@@ -73,6 +73,11 @@ const routes = [
     component: () => import('../views/Error.vue'),
   },
   {
+    path: '/navigator',
+    name: 'Navigator',
+    component: () => import('../views/Navigator.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/error',
   },

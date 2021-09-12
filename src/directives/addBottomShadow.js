@@ -12,7 +12,6 @@ const bottomShadow = {
   },
   beforeUnmount(el) {
     window.removeEventListener('scroll', el.__ClickOutsideHandler__)
-    console.log(el)
   },
 }
 
