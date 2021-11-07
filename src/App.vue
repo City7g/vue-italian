@@ -10,6 +10,7 @@
   <transition name="popup">
     <Register v-show="stateRegister" />
   </transition>
+  <NoWiFi />
 </template>
 
 <script>
@@ -19,6 +20,7 @@ import MainLayout from "@/layout/MainLayout.vue";
 import Background from "@/components/Background.vue";
 import Login from "@/components/Forms/Login.vue";
 import Register from "@/components/Forms/Register.vue";
+import NoWiFi from "@/components/NoWiFi.vue";
 
 export default {
   components: {
@@ -26,7 +28,8 @@ export default {
     MainLayout,
     Background,
     Login,
-    Register
+    Register,
+    NoWiFi
   },
   computed: {
     ...mapGetters(["stateLogin", "stateRegister"]),
