@@ -36,9 +36,5 @@ export default {
 
   width: 24px;
   height: 24px;
-
-  & .fill-black {
-    fill: red !important;
-  }
 }
 </style>
