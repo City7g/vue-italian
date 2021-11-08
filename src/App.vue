@@ -51,6 +51,11 @@ export default {
   }
 }
 
+// Fixed nprogress color
+#nprogress .bar  {
+  background-color: $green !important;
+}
+
 .background-enter-active,
 .background-leave-active {
   transition: opacity 0.5s ease;
