@@ -5,7 +5,12 @@
       <p class="text-main media-section__description">{{ description }}</p>
 
       <div class="media-section__list">
-        <div v-for="(image, index) in images" :key="index" class="media-item">
+        <router-link
+          :to="{name: 'Video', params: { id: image }}"
+          v-for="(image, index) in images"
+          :key="index"
+          class="media-item"
+        >
           <img
             :src="require(`@/assets/images/media/item-${image}.jpg`)"
             alt=""
@@ -16,7 +21,7 @@
             alt=""
             class="media-item__play"
           />
-        </div>
+        </router-link>
       </div>
 
       <button class="white-btn--green media-section__btn">
@@ -104,10 +109,17 @@ export default {
 .media-item {
   position: relative;
 
+  border-radius: $border-image;
+  overflow: hidden;
+
   &__image {
     width: 100%;
 
-    border-radius: $border-image;
+    transition: 0.3s all ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
   }
 
   &__play {

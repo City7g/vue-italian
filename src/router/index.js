@@ -48,6 +48,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "Start" */ '../views/Start.vue'),
   },
+  {
+    path: '/video/:id',
+    name: 'Video',
+    component: () =>
+      import(/* webpackChunkName: "Video" */ '../views/Video.vue'),
+  },
   // Student
   {
     path: '/home',
