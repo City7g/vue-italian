@@ -3,6 +3,8 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import Home from '../views/Home.vue'
 
+NProgress.configure({ showSpinner: false })
+
 const routes = [
   {
     path: '/',
@@ -99,7 +101,7 @@ const router = createRouter({
   routes,
 })
 
-router.beforeResolve((to, from, next) => {
+router.beforeEach((to, from, next) => {
   if (to.name) {
     NProgress.start()
   }
