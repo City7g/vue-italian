@@ -36,20 +36,23 @@ export default {
   },
   mounted() {
     let touchStart;
+    let allowTransfromApp;
     window.addEventListener('touchstart', e => {
       touchStart = e.touches[0].pageY
+      allowTransfromApp = window.pageYOffset < 10 && e.touches[0].pageX < 120 ? true : false
     })
     window.addEventListener('touchend', () => {
-      document.querySelector('html').style.transition = '0.3s all ease'
-      document.querySelector('html').style.transform = 'translateY(0)'
+      document.querySelector('#app').style.transition = '0.3s all ease'
+      document.querySelector('#app').style.transform = 'translateY(0)'
       setTimeout(() => {
-        document.querySelector('html').style.transition = 'none'
+        document.querySelector('#app').style.transition = 'none'
       }, 300);
     })
     window.addEventListener('touchmove', e => {
-      if(e.touches[0].pageY > touchStart) {
+      console.log(allowTransfromApp)
+      if(e.touches[0].pageY > touchStart && allowTransfromApp) {
         e.preventDefault()
-        document.querySelector('html').style.transform = `translateY(${e.touches[0].pageY - touchStart}px)`
+        document.querySelector('#app').style.transform = `translateY(${Math.pow(e.touches[0].pageY - touchStart, 0.8)}px)`
       }
     }, { passive: false })
   }
@@ -67,6 +70,18 @@ export default {
 
   & .footer {
     margin-top: auto;
+  }
+
+  &::after {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    transform: translateY(-100vh);
+
+    background-color: $green;
+    content: '';
   }
 }
 
