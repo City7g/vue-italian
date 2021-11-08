@@ -34,6 +34,25 @@ export default {
   computed: {
     ...mapGetters(["stateLogin", "stateRegister"]),
   },
+  mounted() {
+    let touchStart;
+    window.addEventListener('touchstart', e => {
+      touchStart = e.touches[0].pageY
+    })
+    window.addEventListener('touchend', () => {
+      document.querySelector('html').style.transition = '0.3s all ease'
+      document.querySelector('html').style.transform = 'translateY(0)'
+      setTimeout(() => {
+        document.querySelector('html').style.transition = 'none'
+      }, 300);
+    })
+    window.addEventListener('touchmove', e => {
+      if(e.touches[0].pageY > touchStart) {
+        e.preventDefault()
+        document.querySelector('html').style.transform = `translateY(${e.touches[0].pageY - touchStart}px)`
+      }
+    }, { passive: false })
+  }
 };
 </script>
 
