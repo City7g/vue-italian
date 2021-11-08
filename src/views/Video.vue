@@ -40,16 +40,30 @@ export default {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    gap: 20px;
+    gap: 44px 20px;
 
     @media (max-width: 992px) {
       grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 768px) {
+      gap: 31px 20px;
     }
   }
 
   &__content {
     &-title {
       margin-bottom: 22px;
+
+      @media (max-width: 992px) {
+        margin-bottom: 6px;
+      }
+    }
+  }
+
+  &__video {
+    @media (max-width: 992px) {
+      grid-row-start: 1;
     }
   }
 }
