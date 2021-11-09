@@ -71,23 +71,15 @@ export default {
   & .footer {
     margin-top: auto;
   }
-
-  &::after {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100vh;
-    transform: translateY(-100vh);
-
-    background-color: $green;
-    content: '';
-  }
 }
 
 // Fixed nprogress color
 #nprogress .bar  {
   background-color: $green !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px $green, 0 0 5px $green;
 }
 
 .background-enter-active,
