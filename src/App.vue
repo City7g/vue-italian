@@ -56,6 +56,9 @@ export default {
   //     }
   //   }, { passive: false })
   // }
+  mounted() {
+    document.querySelector('#app').style.minHeight = window.outerHeight + 'px'
+  }
 };
 </script>
 
@@ -66,7 +69,7 @@ export default {
   justify-content: space-between;
   align-items: stretch;
 
-  min-height: 100vh;
+  // min-height: 60vh;
 
   & .footer {
     margin-top: auto;
