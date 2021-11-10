@@ -130,8 +130,8 @@ export default {
   }
 
   &--five {
-    border-color: Silver;
-    box-shadow: 0 0 8px rgba(Silver, 0.8), inset 0 0 8px rgba(Silver, 0.8);
+    border-color: #C0C0C0;
+    box-shadow: 0 0 8px rgba(#C0C0C0, 0.8), inset 0 0 8px rgba(#C0C0C0, 0.8);
   }
 
   &--six {
