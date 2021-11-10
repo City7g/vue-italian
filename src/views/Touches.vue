@@ -57,9 +57,10 @@ export default {
   top: 100px;
   left: 100px;
   transform: translate(-50%, -50%);
+  z-index: 100;
 
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   border: 3px solid red;
   border-radius: 50%;
   box-shadow: 0 0 8px rgba(255, 0, 0, 0.8), inset 0 0 8px rgba(255, 0, 0, 0.8);
