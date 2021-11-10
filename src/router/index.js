@@ -53,6 +53,12 @@ const routes = [
       import(/* webpackChunkName: "Start" */ '../views/Start.vue'),
   },
   {
+    path: '/touches',
+    name: 'Touches',
+    component: () =>
+      import(/* webpackChunkName: "Start" */ '../views/Touches.vue'),
+  },
+  {
     path: '/video/:id',
     name: 'Video',
     component: () =>

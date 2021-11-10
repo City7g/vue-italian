@@ -47,6 +47,10 @@ export default {
           path: "/navigator",
         },
         {
+          title: "Touches",
+          path: "/touches",
+        },
+        {
           title: "Блог",
           path: "/",
         },
