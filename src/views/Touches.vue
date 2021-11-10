@@ -33,7 +33,7 @@ export default {
     return {
       countTouches: 0,
 
-      classIndex: ['one', 'two', 'three', 'four', 'five'],
+      classIndex: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'],
 
       touches: [
         {
@@ -120,13 +120,43 @@ export default {
   }
 
   &--three {
-    border-color: blue;
-    box-shadow: 0 0 8px rgba(blue, 0.8), inset 0 0 8px rgba(blue, 0.8);
+    border-color: Blue;
+    box-shadow: 0 0 8px rgba(Blue, 0.8), inset 0 0 8px rgba(Blue, 0.8);
   }
 
   &--four {
-    border-color: yellow;
-    box-shadow: 0 0 8px rgba(yellow, 0.8), inset 0 0 8px rgba(yellow, 0.8);
+    border-color: Yellow;
+    box-shadow: 0 0 8px rgba(Yellow, 0.8), inset 0 0 8px rgba(Yellow, 0.8);
+  }
+
+  &--five {
+    border-color: Silver;
+    box-shadow: 0 0 8px rgba(Silver, 0.8), inset 0 0 8px rgba(Silver, 0.8);
+  }
+
+  &--six {
+    border-color: Aqua;
+    box-shadow: 0 0 8px rgba(Aqua, 0.8), inset 0 0 8px rgba(Aqua, 0.8);
+  }
+
+  &--seven {
+    border-color: Black;
+    box-shadow: 0 0 8px rgba(Black, 0.8), inset 0 0 8px rgba(Black, 0.8);
+  }
+
+  &--eight {
+    border-color: Fuchsia;
+    box-shadow: 0 0 8px rgba(Fuchsia, 0.8), inset 0 0 8px rgba(Fuchsia, 0.8);
+  }
+
+  &--nine {
+    border-color: Tomato;
+    box-shadow: 0 0 8px rgba(Tomato, 0.8), inset 0 0 8px rgba(Tomato, 0.8);
+  }
+
+  &--ten {
+    border-color: Violet;
+    box-shadow: 0 0 8px rgba(Violet, 0.8), inset 0 0 8px rgba(Violet, 0.8);
   }
 }
 </style>
