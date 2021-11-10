@@ -89,24 +89,30 @@ export default {
       ],
     };
   },
+  methods: {
+    handlerTouch(e) {
+      for (let i = 0; i < this.touches.length; i++) {
+        if(e.touches[i]) {
+          this.touches[i].isShow = true
+          this.touches[i].positionX = e.touches[i].clientX
+          this.touches[i].positionY = e.touches[i].clientY
+        } else {
+          this.touches[i].isShow = false
+        }
+      }
+    }
+  },
   mounted() {
     window.addEventListener("touchstart", (e) => {
       this.countTouches = e.touches.length;
-      this.touches[e.touches.length - 1].isShow = true;
-      this.touches[e.touches.length - 1].positionX =
-        e.touches[e.touches.length - 1].clientX;
-      this.touches[e.touches.length - 1].positionY =
-        e.touches[e.touches.length - 1].clientY;
+      this.handlerTouch(e)
     });
     window.addEventListener("touchmove", (e) => {
-      for (var key in e.touches) {
-        this.touches[key].positionX = e.touches[key].clientX;
-        this.touches[key].positionY = e.touches[key].clientY;
-      }
+      this.handlerTouch(e)
     });
     window.addEventListener("touchend", (e) => {
       this.countTouches = e.touches.length;
-      this.touches[e.touches.length].isShow = false;
+      this.handlerTouch(e)
     });
   },
 };
