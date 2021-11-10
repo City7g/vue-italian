@@ -2,11 +2,24 @@
   <div class="touches">
     <section class="touches-section">
       <div class="container">
-        <h1 class="title-h2 video-section__content-title">Коснитесь пальцем экрана</h1>
+        <h1 class="title-h2 touches-section__title">
+          Коснитесь пальцем экрана
+        </h1>
+        <p class="touches-section__number">{{ countTouches }}</p>
       </div>
     </section>
 
-    <div v-show="touches[0].isShow" :style="{top: `${touches[0].positionY}px`, left: `${touches[0].positionX}px`}" class="touch__one"></div>
+    <div
+      v-for="(touche, index) in touches"
+      :key="index"
+      v-show="touche.isShow"
+      :style="{
+        top: `${touche.positionY}px`,
+        left: `${touche.positionX}px`,
+      }"
+      class="touch"
+      :class="'touch--' + classIndex[index]"
+    />
   </div>
 </template>
 
@@ -15,44 +28,79 @@
 // import MainVideo from "@/components/MainVideo.vue"
 
 export default {
-  name: 'Touches',
+  name: "Touches",
   data() {
     return {
+      countTouches: 0,
+
+      classIndex: ['one', 'two', 'three', 'four', 'five'],
+
       touches: [
         {
           isShow: false,
           positionX: 0,
-          positionY: 0
-        }
-      ]
+          positionY: 0,
+        },
+        {
+          isShow: false,
+          positionX: 0,
+          positionY: 0,
+        },
+        {
+          isShow: false,
+          positionX: 0,
+          positionY: 0,
+        },
+        {
+          isShow: false,
+          positionX: 0,
+          positionY: 0,
+        },
+        {
+          isShow: false,
+          positionX: 0,
+          positionY: 0,
+        },
+      ],
     };
   },
   mounted() {
-    window.addEventListener('touchstart', e => {
-      this.touches[0].isShow = true
-      this.touches[0].positionX = e.touches[0].clientX
-      this.touches[0].positionY = e.touches[0].clientY
-    })
-    window.addEventListener('touchmove', e => {
-      console.log(e)
-      this.touches[0].positionX = e.touches[0].clientX
-      this.touches[0].positionY = e.touches[0].clientY
-    })
-    window.addEventListener('touchend', () => {
-      this.touches[0].isShow = false
-    })
-  }
+    window.addEventListener("touchstart", (e) => {
+      this.countTouches = e.touches.length;
+      this.touches[e.touches.length - 1].isShow = true;
+      this.touches[e.touches.length - 1].positionX =
+        e.touches[e.touches.length - 1].clientX;
+      this.touches[e.touches.length - 1].positionY =
+        e.touches[e.touches.length - 1].clientY;
+    });
+    window.addEventListener("touchmove", (e) => {
+      for (var key in e.touches) {
+        this.touches[key].positionX = e.touches[key].clientX;
+        this.touches[key].positionY = e.touches[key].clientY;
+      }
+    });
+    window.addEventListener("touchend", (e) => {
+      this.countTouches = e.touches.length;
+      this.touches[e.touches.length].isShow = false;
+    });
+  },
 };
 </script>
 
 <style lang="scss">
 .touches {
   margin-top: auto;
-  
+
   text-align: center;
+
+  &-section__number {
+    margin-top: 30px;
+    font-size: 50px;
+    line-height: 62px;
+  }
 }
 
-.touch__one {
+.touch {
   position: fixed;
   top: 100px;
   left: 100px;
@@ -61,8 +109,24 @@ export default {
 
   width: 80px;
   height: 80px;
-  border: 3px solid red;
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.8), inset 0 0 8px rgba(255, 0, 0, 0.8);
+  border: 3px solid $green;
+  box-shadow: 0 0 8px $green, inset 0 0 8px $green;
+  transition: 0.5s border ease, 0.5s box-shadow ease;
+
+  &--two {
+    border-color: $red;
+    box-shadow: 0 0 8px $red, inset 0 0 8px $red;
+  }
+
+  &--three {
+    border-color: blue;
+    box-shadow: 0 0 8px rgba(blue, 0.8), inset 0 0 8px rgba(blue, 0.8);
+  }
+
+  &--four {
+    border-color: yellow;
+    box-shadow: 0 0 8px rgba(yellow, 0.8), inset 0 0 8px rgba(yellow, 0.8);
+  }
 }
 </style>
