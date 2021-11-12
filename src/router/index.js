@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 import Home from '../views/Home.vue'
+
+NProgress.configure({ showSpinner: false })
 
 const routes = [
   {
@@ -48,6 +52,18 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "Start" */ '../views/Start.vue'),
   },
+  {
+    path: '/touches',
+    name: 'Touches',
+    component: () =>
+      import(/* webpackChunkName: "Start" */ '../views/Touches.vue'),
+  },
+  {
+    path: '/video/:id',
+    name: 'Video',
+    component: () =>
+      import(/* webpackChunkName: "Video" */ '../views/Video.vue'),
+  },
   // Student
   {
     path: '/home',
@@ -89,6 +105,17 @@ const router = createRouter({
     return { x: 0, y: 0 }
   },
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name) {
+    NProgress.start()
+  }
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
 })
 
 export default router
