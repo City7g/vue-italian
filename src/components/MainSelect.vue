@@ -100,12 +100,12 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener("click", (e) => {
-      // if (e.target.contains(document.querySelector(".main-select"))) {
-      if (!document.querySelector(".main-select").contains(e.target)) {
-        this.isOpen = false;
-      }
-    });
+    // window.addEventListener("click", (e) => {
+    //   // if (e.target.contains(document.querySelector(".main-select"))) {
+    //   if (!document.querySelector(".main-select").contains(e.target)) {
+    //     this.isOpen = false;
+    //   }
+    // });
   },
 };
 </script>

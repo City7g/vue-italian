@@ -58,7 +58,7 @@
         <router-link
           class="student-aside-nav__link"
           :class="{ 'student-aside-nav__link--special': item.special }"
-          :to="{ name: 'StudentLevel' }"
+          :to="{ name: item.path }"
         >
           <!-- <img
             :src="require(`@/assets/images/${item.img}-nav-icon.svg`)"
@@ -126,38 +126,38 @@ export default {
       navList: [
         {
           name: "Груповые занятия",
-          path: "/",
+          path: "StudentLevel",
           img: "Group",
         },
         {
           name: "Преподаватели",
-          path: "/",
+          path: "AllTeachers",
           img: "Vine",
         },
         {
           name: "Мой календарь",
-          path: "/",
+          path: "StudentLevel",
           img: "Diamond",
         },
         {
           name: "Настройки",
-          path: "/",
+          path: "StudentLevel",
           img: "Qeen",
         },
         {
           name: "Ищешь что-то особенное?",
-          path: "/",
+          path: "StudentLevel",
           img: "Cloud",
           special: true,
         },
         {
           name: "Поддержка",
-          path: "/",
+          path: "StudentLevel",
           img: "List",
         },
         {
           name: "Выйти",
-          path: "/",
+          path: "StudentLevel",
           img: "Close",
         },
       ],
