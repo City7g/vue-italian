@@ -195,4 +195,8 @@ input[type="email"] {
 input[type="password"] {
   background-image: url(~@/assets/images/lock-icon-input.svg);
 }
+
+input[type="tel"] {
+  background-image: url(~@/assets/images/tel-icon-input.svg);
+}
 </style>

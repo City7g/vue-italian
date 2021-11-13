@@ -127,7 +127,13 @@ export default {
     grid-column: 2 / 3;
     grid-row: 1 / 5;
 
-    @include count-line(3);
+    @media (min-width: 769px) {
+      @include count-line(4);
+    }
+
+    @media (min-width: 992px) {
+      @include count-line(3);
+    }
 
     @media (max-width: 768px) {
       grid-column: 1 / -1;

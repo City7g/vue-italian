@@ -59,6 +59,7 @@
           class="student-aside-nav__link"
           :class="{ 'student-aside-nav__link--special': item.special }"
           :to="{ name: item.path }"
+          @click="isOpenMenu = !isOpenMenu"
         >
           <!-- <img
             :src="require(`@/assets/images/${item.img}-nav-icon.svg`)"
@@ -141,7 +142,7 @@ export default {
         },
         {
           name: "Настройки",
-          path: "StudentLevel",
+          path: "StudentSettings",
           img: "Qeen",
         },
         {
@@ -453,7 +454,8 @@ export default {
     transition: $transition;
   }
 
-  &__link:hover &__text {
+  &__link:hover &__text,
+  &__link.router-link-exact-active {
     color: $green;
   }
 

@@ -93,6 +93,13 @@ a {
   }
 }
 
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+  min-width: 100px;
+}
+
 input[type="radio"]:focus-visible {
   outline: none;
 }

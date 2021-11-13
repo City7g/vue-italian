@@ -90,7 +90,7 @@ const routes = [
       layout: 'student'
     },
     component: () =>
-      import(/* webpackChunkName: "StudentLevel" */ '../views/Student/AllTeachers.vue'),
+      import(/* webpackChunkName: "AllTeachers" */ '../views/Student/AllTeachers.vue'),
   },
   {
     path: '/packages/:id',
@@ -99,7 +99,7 @@ const routes = [
       layout: 'student'
     },
     component: () =>
-      import(/* webpackChunkName: "StudentLevel" */ '../views/Student/StudentPackages.vue'),
+      import(/* webpackChunkName: "StudentPackages" */ '../views/Student/StudentPackages.vue'),
   },
   {
     path: '/buy-packages/:id',
@@ -108,7 +108,16 @@ const routes = [
       layout: 'student'
     },
     component: () =>
-      import(/* webpackChunkName: "StudentLevel" */ '../views/Student/BuyPackage.vue'),
+      import(/* webpackChunkName: "BuyPackage" */ '../views/Student/BuyPackage.vue'),
+  },
+  {
+    path: '/settings',
+    name: 'StudentSettings',
+    meta: {
+      layout: 'student'
+    },
+    component: () =>
+      import(/* webpackChunkName: "StudentSettings" */ '../views/Student/Settings.vue'),
   },
   {
     path: '/error',
