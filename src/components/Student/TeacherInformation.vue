@@ -89,7 +89,7 @@ export default {
 <style lang="scss">
 .teacher-information {
   display: grid;
-  grid-template-columns: 300px 360px auto auto;
+  grid-template-columns: 5fr 6fr auto auto;
   grid-template-rows: auto auto auto 1fr;
   align-items: flex-start;
   gap: 0 40px;
@@ -127,12 +127,18 @@ export default {
     grid-column: 2 / 3;
     grid-row: 1 / 5;
 
+    @include count-line(3);
+
     @media (max-width: 768px) {
       grid-column: 1 / -1;
       grid-row: auto;
 
       margin-top: 16px;
     }
+  }
+
+  &.active &__description {
+    display: block;
   }
 
   &__arrow {
