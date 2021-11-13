@@ -30,7 +30,10 @@
       <button class="small-btn student-package__more">Подробнее</button>
     </div>
 
-    <form class="student-package__form student-package-form" @submit.prevent>
+    <form
+      class="student-package__form student-package-form"
+      @submit.prevent="buyPackage"
+    >
       <p class="text-regular student-package-form__head">Пакет занятий</p>
       <p class="text-regular student-package-form__sale">Скидка - 10%</p>
       <h2 class="title-h2 student-package-form__title">
@@ -69,6 +72,14 @@ export default {
     ...mapState(["packagesList"]),
     currentPackage() {
       return this.packagesList[this.$route.params.id];
+    },
+  },
+  methods: {
+    buyPackage() {
+      this.$router.push({
+        name: "BuyPackage",
+        params: { id: this.$route.params.id },
+      });
     },
   },
 };

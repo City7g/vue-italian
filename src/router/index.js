@@ -102,6 +102,15 @@ const routes = [
       import(/* webpackChunkName: "StudentLevel" */ '../views/Student/StudentPackages.vue'),
   },
   {
+    path: '/buy-packages/:id',
+    name: 'BuyPackage',
+    meta: {
+      layout: 'student'
+    },
+    component: () =>
+      import(/* webpackChunkName: "StudentLevel" */ '../views/Student/BuyPackage.vue'),
+  },
+  {
     path: '/error',
     name: 'Error',
     component: () => import('../views/Error.vue'),
@@ -110,6 +119,11 @@ const routes = [
     path: '/navigator',
     name: 'Navigator',
     component: () => import('../views/Navigator.vue'),
+  },
+  {
+    path: '/ui-kit',
+    name: 'UIKit',
+    component: () => import('../views/UIKit.vue'),
   },
   {
     path: '/:pathMatch(.*)*',

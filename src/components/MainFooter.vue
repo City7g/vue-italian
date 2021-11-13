@@ -52,7 +52,7 @@ export default {
         },
         {
           title: "Блог",
-          path: "/",
+          path: "/ui-kit",
         },
         {
           title: "Материалы",
