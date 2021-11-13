@@ -35,6 +35,7 @@ export default {
 
   @media (max-width: 991px) {
     grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
   }
 }
 </style>

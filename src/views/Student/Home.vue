@@ -36,16 +36,21 @@
         Экзамен на сертификат
       </button>
       <div class="special-offers__wrap">
-        <div class="special-offer" v-for="(item, index) in 3" :key="item">
+        <router-link
+          :to="{ name: 'StudentPackages', params: {id: item.id} }"
+          class="special-offer"
+          v-for="item in packagesList"
+          :key="item.id"
+        >
           <span class="special-offer__sale">Скидка 5-15%</span>
           <img
-            :src="require(`@/assets/images/offer/offer-${index + 1}.svg`)"
+            :src="require(`@/assets/images/offer/${item.img}`)"
             alt=""
             class="special-offer__img"
           />
-          <h3 class="title-h3 special-offer__title">Классические занятия</h3>
-          <p class="text-main special-offer__text">5 - 30 занятий</p>
-        </div>
+          <h3 class="title-h3 special-offer__title">{{ item.title }}</h3>
+          <p class="text-main special-offer__text">{{ item.countLessons }}</p>
+        </router-link>
       </div>
     </div>
 
@@ -73,11 +78,15 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import Level from "@/components/Student/Level.vue";
 
 export default {
   name: "StudentHome",
   components: { Level },
+  computed: {
+    ...mapState(["packagesList"]),
+  },
 };
 </script>
 
