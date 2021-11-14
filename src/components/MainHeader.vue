@@ -26,13 +26,13 @@
 
       <div class="header-social">
         <button class="header-social__button">
-          <img src="@/assets/images/social/youtube.svg" alt="" />
+          <YoutubeIcon />
         </button>
         <button class="header-social__button">
-          <img src="@/assets/images/social/facebook.svg" alt="" />
+          <FacebookIcon />
         </button>
         <button class="header-social__button">
-          <img src="@/assets/images/social/instagram.svg" alt="" />
+          <InstagramIcon />
         </button>
       </div>
 
@@ -53,10 +53,13 @@ import { mapActions } from "vuex";
 import MainLogo from "@/components/MainLogo.vue";
 import MenuHamburger from "@/components/MenuHamburger.vue";
 import bottomShadow from "@/directives/addBottomShadow.js";
+import YoutubeIcon from "@/assets/images/social/youtube.svg?inline";
+import FacebookIcon from "@/assets/images/social/facebook.svg?inline";
+import InstagramIcon from "@/assets/images/social/instagram.svg?inline";
 
 export default {
   name: "MainHeader",
-  components: { MainLogo, MenuHamburger },
+  components: { MainLogo, MenuHamburger, YoutubeIcon, FacebookIcon, InstagramIcon },
   directives: { bottomShadow },
   data() {
     return {
@@ -79,7 +82,7 @@ export default {
         },
         {
           title: "Грамматика ",
-          path: "/",
+          path: "/test",
         },
         {
           title: "Медиатека",

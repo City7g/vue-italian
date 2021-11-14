@@ -39,9 +39,13 @@ export default {
   max-width: 460px;
   padding: 60px 30px;
 
-  @media (max-width: 768px) {
-    max-width: 270px;
-  }
+  // @media (max-width: 768px) {
+  //   max-width: 350px;
+  // }
+
+  // @media (max-width: 576px) {
+  //   max-width: 300px;
+  // }
 
   &__img {
     margin-bottom: 50px;

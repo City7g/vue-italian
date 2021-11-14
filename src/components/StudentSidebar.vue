@@ -24,13 +24,13 @@
         </a>
       </li> -->
       <button class="student-aside-social__button">
-        <img src="@/assets/images/social/youtube.svg" alt="" />
+        <YoutubeIcon />
       </button>
       <button class="student-aside-social__button">
-        <img src="@/assets/images/social/facebook.svg" alt="" />
+        <FacebookIcon />
       </button>
       <button class="student-aside-social__button">
-        <img src="@/assets/images/social/instagram.svg" alt="" />
+        <InstagramIcon />
       </button>
     </div>
 
@@ -94,6 +94,7 @@
 <script>
 import MenuHamburger from "@/components/MenuHamburger.vue";
 import MainLogo from "@/components/MainLogo.vue";
+// Icons Navigation
 import UserAvatar from "@/assets/images/user-avatar.svg?inline";
 import SpecialAsideLeft from "@/assets/images/special-aside-left.svg?inline";
 import Group from "@/assets/images/group-nav-icon.svg?inline";
@@ -103,6 +104,11 @@ import Qeen from "@/assets/images/qeen-nav-icon.svg?inline";
 import Cloud from "@/assets/images/cloud-nav-icon.svg?inline";
 import List from "@/assets/images/list-nav-icon.svg?inline";
 import Close from "@/assets/images/close-nav-icon.svg?inline";
+// Icons Social
+import YoutubeIcon from "@/assets/images/social/youtube.svg?inline";
+import FacebookIcon from "@/assets/images/social/facebook.svg?inline";
+import InstagramIcon from "@/assets/images/social/instagram.svg?inline";
+// Add Bottom Shadow
 import bottomShadow from "@/directives/addBottomShadow.js";
 
 export default {
@@ -118,6 +124,9 @@ export default {
     Cloud,
     List,
     Close,
+    YoutubeIcon,
+    FacebookIcon,
+    InstagramIcon,
   },
   directives: { bottomShadow },
   data() {
@@ -158,7 +167,7 @@ export default {
         },
         {
           name: "Выйти",
-          path: "StudentLevel",
+          path: "Home",
           img: "Close",
         },
       ],

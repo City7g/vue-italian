@@ -33,31 +33,6 @@ export default {
   },
   computed: {
     ...mapGetters(["stateLogin", "stateRegister"]),
-  },
-  // mounted() {
-  //   let touchStart;
-  //   let allowTransfromApp;
-  //   window.addEventListener('touchstart', e => {
-  //     touchStart = e.touches[0].pageY
-  //     allowTransfromApp = window.pageYOffset < 10 && e.touches[0].pageX < 120 ? true : false
-  //   })
-  //   window.addEventListener('touchend', () => {
-  //     document.querySelector('#app').style.transition = '0.3s all ease'
-  //     document.querySelector('#app').style.transform = 'translateY(0)'
-  //     setTimeout(() => {
-  //       document.querySelector('#app').style.transition = 'none'
-  //     }, 300);
-  //   })
-  //   window.addEventListener('touchmove', e => {
-  //     console.log(allowTransfromApp)
-  //     if(e.touches[0].pageY > touchStart && allowTransfromApp) {
-  //       e.preventDefault()
-  //       document.querySelector('#app').style.transform = `translateY(${Math.pow(e.touches[0].pageY - touchStart, 0.8)}px)`
-  //     }
-  //   }, { passive: false })
-  // }
-  mounted() {
-    document.querySelector('#app').style.minHeight = window.outerHeight + 'px'
   }
 };
 </script>
@@ -69,7 +44,7 @@ export default {
   justify-content: space-between;
   align-items: stretch;
 
-  // min-height: 60vh;
+  min-height: 100vh;
 
   & .footer {
     margin-top: auto;
