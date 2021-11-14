@@ -153,7 +153,7 @@ export default {
         },
         {
           name: "Поддержка",
-          path: "StudentLevel",
+          path: "StudentFAQ",
           img: "List",
         },
         {

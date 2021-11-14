@@ -120,6 +120,15 @@ const routes = [
       import(/* webpackChunkName: "StudentSettings" */ '../views/Student/Settings.vue'),
   },
   {
+    path: '/faq',
+    name: 'StudentFAQ',
+    meta: {
+      layout: 'student'
+    },
+    component: () =>
+      import(/* webpackChunkName: "StudentFAQ" */ '../views/Student/FAQ.vue'),
+  },
+  {
     path: '/error',
     name: 'Error',
     component: () => import('../views/Error.vue'),

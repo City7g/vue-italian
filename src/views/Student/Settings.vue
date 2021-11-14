@@ -64,6 +64,14 @@ export default {
 
   &__title {
     margin-bottom: 30px;
+
+    @media (max-width: 992px) {
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+      margin-bottom: 25px;
+    }
   }
 
   &__main {
@@ -72,6 +80,7 @@ export default {
     gap: 0 32px;
 
     padding: 38px 30px;
+    margin-bottom: 80px;
 
     background-color: #f7f7f7;
     border-radius: 2px;
@@ -81,6 +90,7 @@ export default {
       gap: 20px 32px;
 
       padding: 32px 30px;
+      margin-bottom: 50px;
     }
   }
 
