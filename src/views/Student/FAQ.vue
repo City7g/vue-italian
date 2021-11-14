@@ -82,7 +82,7 @@ export default {
 
   padding: 35px 30px;
 
-  background-color: #f7f7f7;
+  background-color: $grey-bg;
   border-radius: 2px;
 
   &:not(:last-child) {

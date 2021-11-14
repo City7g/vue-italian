@@ -82,7 +82,7 @@ export default {
     padding: 38px 30px;
     margin-bottom: 80px;
 
-    background-color: #f7f7f7;
+    background-color: $grey-bg;
     border-radius: 2px;
 
     @media (max-width: 768px) {
@@ -106,7 +106,7 @@ export default {
 
     padding: 38px 30px;
 
-    background-color: #f7f7f7;
+    background-color: $grey-bg;
     border-radius: 2px;
 
     @media (max-width: 1200px) {

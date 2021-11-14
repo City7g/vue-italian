@@ -98,7 +98,7 @@ export default {
   padding: 30px;
   margin-bottom: 13px;
 
-  background-color: #f7f7f7;
+  background-color: $grey-bg;
   border-radius: 2px;
   transition: 0.2s all ease;
   overflow: hidden;
@@ -114,14 +114,6 @@ export default {
   &.active {
     height: auto;
   }
-
-  // &.no-active &__description > p:first-child {
-  //   overflow: hidden;
-  //   text-overflow: ellipsis;
-  //   display: -webkit-box;
-  //   -webkit-line-clamp: 3;
-  //   -webkit-box-orient: vertical;
-  // }
 
   &__description {
     grid-column: 2 / 3;

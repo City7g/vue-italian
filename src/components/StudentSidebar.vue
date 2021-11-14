@@ -137,7 +137,7 @@ export default {
         },
         {
           name: "Мой календарь",
-          path: "StudentLevel",
+          path: "StudentCalendar",
           img: "Diamond",
         },
         {

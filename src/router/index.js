@@ -111,6 +111,15 @@ const routes = [
       import(/* webpackChunkName: "BuyPackage" */ '../views/Student/BuyPackage.vue'),
   },
   {
+    path: '/calendar',
+    name: 'StudentCalendar',
+    meta: {
+      layout: 'student'
+    },
+    component: () =>
+      import(/* webpackChunkName: "StudentCalendar" */ '../views/Student/Calendar.vue'),
+  },
+  {
     path: '/settings',
     name: 'StudentSettings',
     meta: {
