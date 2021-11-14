@@ -5,7 +5,7 @@
       class="student-aside-hamburger"
     />
 
-    <MainLogo class="student-aside-logo" />
+    <MainLogo class="student-aside-logo" path="StudentHome" />
 
     <div class="student-aside-social">
       <!-- <li>
@@ -180,8 +180,15 @@ export default {
   watch: {
     isOpenMenu(old) {
       if (old) {
+        const offsetRight =
+          window.innerWidth -
+          document.querySelector(".layout-main").offsetWidth;
+        document.querySelector("#app").style.marginRight = offsetRight
+          ? offsetRight + "px"
+          : "";
         document.body.style.overflow = "hidden";
       } else {
+        document.querySelector("#app").style.marginRight = "";
         document.body.style.overflow = "auto";
       }
     },

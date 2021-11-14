@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/" class="main-logo">
+  <router-link :to="{ name: path ? path : 'Home' }" class="main-logo">
     <Logo />
   </router-link>
 </template>
@@ -9,6 +9,12 @@ import Logo from "@/assets/images/logo.svg?inline";
 
 export default {
   name: "MainLogo",
+  props: {
+    path: {
+      type: String,
+      require: false,
+    },
+  },
   components: {
     Logo,
   },
@@ -18,7 +24,7 @@ export default {
 <style lang="scss">
 .main-logo {
   display: flex;
-  
+
   & svg {
     @media (min-width: 1200px) {
       width: 90px;
