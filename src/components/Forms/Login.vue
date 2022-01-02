@@ -60,7 +60,7 @@ export default {
     login() {
       this.loading = true
 
-      axios.post('http://localhost:3000/login', {
+      axios.post('https://italian-back.herokuapp.com/login', {
         email: this.email,
         password: this.password
       })
