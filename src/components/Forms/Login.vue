@@ -10,10 +10,10 @@
         Для доступа к функциям личного кабинета необходимо зарегистрироваться.
       </p> -->
 
-      <form @submit.prevent="login" class="popup-login__form">
-        <input type="email" placeholder="Ваша почта" />
-        <input type="password" placeholder="Ваш пароль" />
-        <button type="submit" class="small-btn">Войти</button>
+      <form @submit.prevent="login" class="popup-login__form" novalidate>
+        <input type="email" placeholder="Ваша почта" v-model="email" />
+        <input type="password" placeholder="Ваш пароль" v-model="password" />
+        <BaseButton type="submit" text="Войти" :loading="loading" />
       </form>
 
       <p class="text-main popup-login__text">Вход через:</p>
@@ -39,15 +39,44 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapActions } from "vuex";
+import BaseButton from '@/components/Base/Button'
 
 export default {
   name: "Login",
+  components: {
+    BaseButton
+  },
+  data() {
+    return {
+      email: null,
+      password: null,
+      loading: false
+    }
+  },
   methods: {
     ...mapActions(["change_state_login"]),
     login() {
-      this.$router.push({ name: "StudentHome" });
-      this.change_state_login(false);
+      this.loading = true
+
+      axios.post('http://localhost:3000/login', {
+        email: this.email,
+        password: this.password
+      })
+      .then(() => {
+        setTimeout(() => {
+          this.$router.push({ name: "StudentHome" });
+          this.change_state_login(false)
+          this.email = ''
+          this.password = ''
+          this.loading = false
+        }, 2000);
+      })
+      .catch((err) => {
+        this.loading = false
+        console.log(err.response.data)
+      })
     },
   },
 };
