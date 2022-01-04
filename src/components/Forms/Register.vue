@@ -125,6 +125,12 @@ export default {
     text-align: center;
   }
 
+  &__error {
+    padding-top: 10px;
+    
+    color: $red;
+  }
+
   &__social {
     display: flex;
     justify-content: center;

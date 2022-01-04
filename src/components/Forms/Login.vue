@@ -14,7 +14,7 @@
         <input type="email" placeholder="Ваша почта" v-model="email" />
         <input type="password" placeholder="Ваш пароль" v-model="password" />
         <BaseButton type="submit" text="Войти" :loading="loading" />
-        <p v-if="error">{{error}}</p>
+        <p v-if="error" class="popup-login__error">{{error}}</p>
       </form>
 
       <p class="text-main popup-login__text">Вход через:</p>
@@ -78,7 +78,7 @@ export default {
       })
       .catch((err) => {
         this.loading = false
-        this.error = err.response
+        this.error = err.response.data
       })
     },
   },
