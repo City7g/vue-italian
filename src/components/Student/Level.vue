@@ -19,7 +19,13 @@
         :stroke-dasharray="strokeDasharray"
         ref="level"
       />
-      <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle">
+      <text
+        ref="text"
+        x="50%"
+        y="50%"
+        dominant-baseline="central"
+        text-anchor="middle"
+      >
         {{ value }}%
       </text>
     </svg>
@@ -28,6 +34,8 @@
 </template>
 
 <script>
+import gsap from "gsap";
+
 export default {
   name: "Level",
   props: {
@@ -38,19 +46,26 @@ export default {
   },
   data() {
     return {
-      strokeDasharray: '0 10000'
+      strokeDasharray: "0 10000",
     };
   },
-  computed: {
-    // strokeDasharray() {
-    //   return `${this.length * this.value / 100} ${this.length}`
-    // }
-  },
   mounted() {
-    const length = this.$refs.level.getTotalLength()
+    const length = this.$refs.level.getTotalLength();
+    
     setTimeout(() => {
-      this.strokeDasharray = `${length * this.value / 100} ${length}`
-    }, 200);
+      this.strokeDasharray = `${(length * this.value) / 100} ${(length * (100 - this.value)) / 100}`;
+      gsap.fromTo(
+      this.$refs.text,
+      {
+        textContent: 0 + '%',
+      },
+      {
+        textContent: this.value + '%',
+        duration: 2,
+        snap: { textContent: 1 },
+      }
+    );
+    }, 10);
   },
 };
 </script>
@@ -73,13 +88,9 @@ export default {
     stroke: #39b100;
     fill: transparent;
 
-    transition: 0.8s all ease;
+    transition: 2s all ease;
     transform: rotate(-90deg);
     transform-origin: center center;
-  }
-
-  & circle {
-    transition: 0.8s all ease;
   }
 }
 </style>
