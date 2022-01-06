@@ -149,6 +149,7 @@ export default {
     border: solid #251c1c;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
+    cursor: pointer;
 
     @media (max-width: 768px) {
       grid-column: 2 / 3;

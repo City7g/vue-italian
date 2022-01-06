@@ -1,12 +1,41 @@
 <template>
   <div class="all-teachers">
-    <h1 class="title-h2--bold all-teachers__title">Выбери своего первого преподавателя!</h1>
+    <h1 class="title-h2--bold all-teachers__title">
+      Выбери своего первого преподавателя!
+    </h1>
 
-    <TeacherInformation v-for="teacherInfo in teacherList" :key="teacherInfo.id" :teacherInfo="teacherInfo" />
+    <svg
+      v-if="loading"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      class="all-teachers__loading"
+    >
+      <path
+        d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"
+      >
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          dur="1s"
+          from="0 50 50"
+          to="360 50 50"
+          repeatCount="indefinite"
+        />
+      </path>
+    </svg>
+
+    <template v-else>
+      <TeacherInformation
+        v-for="teacherInfo in teacherList"
+        :key="teacherInfo.id"
+        :teacherInfo="teacherInfo"
+      />
+    </template>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import TeacherInformation from "@/components/Student/TeacherInformation.vue";
 
 export default {
@@ -14,52 +43,16 @@ export default {
   components: { TeacherInformation },
   data() {
     return {
-      teacherList: [
-        {
-          id: 0,
-          name: 'Tomothy Murphy',
-          avatar: 'teacher-1.png',
-          nationality: 'Итальянец',
-          description: 'Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.<br>Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum.'
-        },
-        {
-          id: 1,
-          name: 'Tomothy Murphy',
-          avatar: 'teacher-2.png',
-          nationality: 'Итальянец',
-          description: 'Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.<br>Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum.'
-        },
-        {
-          id: 2,
-          name: 'Morris Richards',
-          avatar: 'teacher-3.png',
-          nationality: 'Итальянец',
-          description: 'Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.<br>Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum.'
-        },
-        {
-          id: 3,
-          name: 'Lily Fisher',
-          avatar: 'teacher-4.png',
-          nationality: 'Итальянец',
-          description: 'Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.<br>Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum.'
-        },
-        {
-          id: 4,
-          name: 'Stella Flores',
-          avatar: 'teacher-5.png',
-          nationality: 'Итальянец',
-          description: 'Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.<br>Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum.'
-        },
-        {
-          id: 5,
-          name: 'Harold Miles',
-          avatar: 'teacher-6.png',
-          nationality: 'Итальянец',
-          description: 'Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.<br>Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum. Irure fugiat magna deserunt labore veniam cupidatat veniam minim ea quis laborum.Exercitation officia ad officia sit amet laboris Lorem Lorem. Veniam sunt est eu voluptate ut officia proident pariatur sint amet in cupidatat ea cillum.'
-        }
-      ]
-    }
-  }
+      teacherList: null,
+      loading: true,
+    };
+  },
+  mounted() {
+    axios.get("http://localhost:3000/teacher").then((data) => {
+      this.loading = false;
+      this.teacherList = data.data;
+    });
+  },
 };
 </script>
 
@@ -79,6 +72,14 @@ export default {
     @media (max-width: 768px) {
       margin-bottom: 40px;
     }
+  }
+
+  &__loading {
+    display: block;
+    width: 50px;
+    margin: 0 auto;
+
+    fill: $green;
   }
 }
 </style>
