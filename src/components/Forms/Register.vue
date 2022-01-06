@@ -10,11 +10,20 @@
         Для доступа к функциям личного кабинета необходимо зарегистрироваться.
       </p>
 
-      <form @submit.prevent="login" class="popup-login__form">
-        <input type="text" placeholder="Ваше имя" />
-        <input type="email" placeholder="Ваша почта" />
-        <input type="password" placeholder="Придумайте пароль" />
-        <button type="submit" class="small-btn">Зарегистрироваться</button>
+      <form @submit.prevent="register" class="popup-login__form">
+        <input type="text" placeholder="Ваше имя" v-model="name" />
+        <input type="email" placeholder="Ваша почта" v-model="email" />
+        <input
+          type="password"
+          placeholder="Придумайте пароль"
+          v-model="password"
+        />
+        <BaseButton
+          type="submit"
+          text="Зарегистрироваться"
+          :loading="loading"
+        />
+        <p v-if="error" class="popup-login__error">{{ error }}</p>
       </form>
 
       <p class="text-main popup-login__text">Регистрация через:</p>
@@ -40,15 +49,50 @@
 </template>
 
 <script>
+import axios from "axios";
 import { mapActions } from "vuex";
+import BaseButton from "@/components/Base/Button";
 
 export default {
-  name: "Login",
+  name: "Register",
+  components: {
+    BaseButton,
+  },
+  data() {
+    return {
+      name: null,
+      email: null,
+      password: null,
+      loading: false,
+
+      error: null,
+    };
+  },
   methods: {
     ...mapActions(["change_state_register"]),
-    login() {
-      this.$router.push({ name: "StudentHome" });
-      this.change_state_register(false);
+    register() {
+      this.loading = true;
+
+      axios
+        .post("https://italian-back.herokuapp.com/register", {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.push({ name: "StudentHome" });
+            this.change_state_register(false);
+            this.name = "";
+            this.email = "";
+            this.password = "";
+            this.loading = false;
+          }, 2000);
+        })
+        .catch((err) => {
+          this.loading = false;
+          this.error = err.response.data;
+        });
     },
   },
 };
@@ -127,7 +171,7 @@ export default {
 
   &__error {
     padding-top: 10px;
-    
+
     color: $red;
   }
 
