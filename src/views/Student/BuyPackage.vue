@@ -1,5 +1,5 @@
 <template>
-  <section class="buy-package">
+  <section v-if="!loading" class="buy-package">
     <img
       src="@/assets/images/buy-package.svg"
       alt=""
@@ -21,15 +21,26 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import axios from "axios";
 
 export default {
   name: "BuyPackage",
-  computed: {
-    ...mapState(["packagesList"]),
-    currentPackage() {
-      return this.packagesList[this.$route.params.id];
-    },
+  data() {
+    return {
+      currentPackage: null,
+      loading: true,
+    };
+  },
+  mounted() {
+    axios.get("https://italian-back.herokuapp.com/classes").then((data) => {
+      for (let i = 0; i < data.data.length; i++) {
+        data.data[i].advantages = JSON.parse(data.data[i].advantages);
+      }
+      this.currentPackage = data.data.find(
+        (c) => c.id === +this.$route.params.id
+      );
+      this.loading = false;
+    });
   },
 };
 </script>

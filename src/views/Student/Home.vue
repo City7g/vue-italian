@@ -35,9 +35,30 @@
       <button class="main-btn--white special-offers__btn">
         Экзамен на сертификат
       </button>
-      <div class="special-offers__wrap">
+
+      <svg
+        v-if="loading"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 100 100"
+        class="special-offers__loading"
+      >
+        <path
+          d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"
+        >
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            dur="1s"
+            from="0 50 50"
+            to="360 50 50"
+            repeatCount="indefinite"
+          />
+        </path>
+      </svg>
+
+      <div v-else class="special-offers__wrap">
         <router-link
-          :to="{ name: 'StudentPackages', params: {id: item.id} }"
+          :to="{ name: 'StudentPackages', params: { id: item.id } }"
           class="special-offer"
           v-for="item in packagesList"
           :key="item.id"
@@ -78,14 +99,23 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import axios from "axios";
 import Level from "@/components/Student/Level.vue";
 
 export default {
   name: "StudentHome",
   components: { Level },
-  computed: {
-    ...mapState(["packagesList"]),
+  data() {
+    return {
+      packagesList: null,
+      loading: true
+    };
+  },
+  mounted() {
+    axios.get("https://italian-back.herokuapp.com/classes").then((data) => {
+      this.loading = false;
+      this.packagesList = data.data;
+    });
   },
 };
 </script>
@@ -196,6 +226,16 @@ export default {
       grid-template-columns: 1fr;
       gap: 20px;
     }
+  }
+
+  &__loading {
+    grid-column: 1 / -1;
+
+    display: block;
+    width: 50px;
+    margin: 0 auto;
+
+    fill: $green;
   }
 }
 

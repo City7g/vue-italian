@@ -1,5 +1,5 @@
 <template>
-  <div class="student-package">
+  <div v-if="!loading" class="student-package">
     <div class="student-package__content">
       <img
         src="@/assets/images/package-preview.svg"
@@ -64,23 +64,44 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import axios from "axios";
 
 export default {
   name: "StudentPackages",
-  computed: {
-    ...mapState(["packagesList"]),
-    currentPackage() {
-      return this.packagesList[this.$route.params.id];
-    },
+  data() {
+    return {
+      currentPackage: null,
+      loading: true,
+    };
   },
   methods: {
     buyPackage() {
-      this.$router.push({
-        name: "BuyPackage",
-        params: { id: this.$route.params.id },
-      });
+      axios
+        .post("https://italian-back.herokuapp.com/classes/buy", {
+          email: "City7gor@gmail.com",
+          classes: this.currentPackage.slug,
+        })
+        .then(() => {
+          this.$router.push({
+            name: "BuyPackage",
+            params: { id: this.$route.params.id },
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
+  },
+  mounted() {
+    axios.get("https://italian-back.herokuapp.com/classes").then((data) => {
+      for (let i = 0; i < data.data.length; i++) {
+        data.data[i].advantages = JSON.parse(data.data[i].advantages);
+      }
+      this.currentPackage = data.data.find(
+        (c) => c.id === +this.$route.params.id
+      );
+      this.loading = false;
+    });
   },
 };
 </script>
