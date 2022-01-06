@@ -48,7 +48,7 @@ export default {
     };
   },
   mounted() {
-    axios.get("http://localhost:3000/teacher").then((data) => {
+    axios.get("https://italian-back.herokuapp.com/teacher").then((data) => {
       this.loading = false;
       this.teacherList = data.data;
     });
