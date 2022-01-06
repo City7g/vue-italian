@@ -9,12 +9,12 @@
 
         <div class="info-bar-level__wrap">
           <p class="text-regular info-bar-level__subtitle">Грамматика</p>
-          <Level />
+          <Level :value="65" />
         </div>
 
         <div class="info-bar-level__wrap">
           <p class="text-regular info-bar-level__subtitle">Лексика</p>
-          <Level />
+          <Level :value="35" />
         </div>
       </div>
       <div class="info-bar-trial">

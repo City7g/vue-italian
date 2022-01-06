@@ -1,27 +1,58 @@
 <template>
   <div class="level">
-    <svg viewBox="0 0 42 42" class="level__wrap">
+    <svg viewbox="0 0 60 60" class="level__wrap">
       <circle
-        r="18"
-        cx="21"
-        cy="21"
-        class="level__back"
-      ></circle>
+        r="25"
+        cx="30"
+        cy="30"
+        stroke-width="3"
+        stroke="#ccc"
+        class="level__bg"
+      />
       <circle
-        r="18"
-        cx="21"
-        cy="21"
+        r="25"
+        cx="30"
+        cy="30"
+        stroke-width="3"
+        class="level__line"
         stroke-linecap="round"
-        stroke-dasharray="30 60"
-        class="level__fill"
-      ></circle>
+        :stroke-dasharray="strokeDasharray"
+        ref="level"
+      />
+      <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle">
+        {{ value }}%
+      </text>
     </svg>
-    <span class="text-regular level__text">68%</span>
+    <!-- <span class="text-regular level__text">68%</span> -->
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Level",
+  props: {
+    value: {
+      type: Number,
+      require: true,
+    },
+  },
+  data() {
+    return {
+      strokeDasharray: '0 10000'
+    };
+  },
+  computed: {
+    // strokeDasharray() {
+    //   return `${this.length * this.value / 100} ${this.length}`
+    // }
+  },
+  mounted() {
+    const length = this.$refs.level.getTotalLength()
+    setTimeout(() => {
+      this.strokeDasharray = `${length * this.value / 100} ${length}`
+    }, 200);
+  },
+};
 </script>
 
 <style lang="scss">
@@ -33,23 +64,22 @@ export default {};
     height: 60px;
   }
 
-  &__back {
-    stroke: $grey-bg;
+  &__bg {
+    stroke: #ccc;
     fill: transparent;
-    stroke-width: 5;
   }
 
-  &__fill {
-    stroke: $green;
+  &__line {
+    stroke: #39b100;
     fill: transparent;
-    stroke-width: 5;
+
+    transition: 0.8s all ease;
+    transform: rotate(-90deg);
+    transform-origin: center center;
   }
 
-  &__text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  & circle {
+    transition: 0.8s all ease;
   }
 }
 </style>
