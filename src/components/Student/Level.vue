@@ -49,23 +49,35 @@ export default {
       strokeDasharray: "0 10000",
     };
   },
+  watch: {
+    value() {
+      this.changeLevel()
+    }
+  },
+  methods: {
+    changeLevel() {
+      const length = this.$refs.level.getTotalLength();
+
+      setTimeout(() => {
+        this.strokeDasharray = `${(length * this.value) / 100} ${
+          (length * (100 - this.value)) / 100
+        }`;
+        gsap.fromTo(
+          this.$refs.text,
+          {
+            textContent: 0 + "%",
+          },
+          {
+            textContent: this.value + "%",
+            duration: 2,
+            snap: { textContent: 1 },
+          }
+        );
+      }, 10);
+    },
+  },
   mounted() {
-    const length = this.$refs.level.getTotalLength();
-    
-    setTimeout(() => {
-      this.strokeDasharray = `${(length * this.value) / 100} ${(length * (100 - this.value)) / 100}`;
-      gsap.fromTo(
-      this.$refs.text,
-      {
-        textContent: 0 + '%',
-      },
-      {
-        textContent: this.value + '%',
-        duration: 2,
-        snap: { textContent: 1 },
-      }
-    );
-    }, 10);
+    this.changeLevel()
   },
 };
 </script>

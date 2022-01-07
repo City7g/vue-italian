@@ -9,7 +9,7 @@
 
         <div class="info-bar-level__wrap">
           <p class="text-regular info-bar-level__subtitle">Грамматика</p>
-          <Level :value="65" />
+          <Level :value="60" />
         </div>
 
         <div class="info-bar-level__wrap">
