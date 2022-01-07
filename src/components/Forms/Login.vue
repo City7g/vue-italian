@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import { mapActions } from "vuex";
 import BaseButton from "@/components/Base/Button";
 
@@ -63,11 +63,13 @@ export default {
     login() {
       this.loading = true;
 
-      axios
-        .post("https://italian-back.herokuapp.com/login", {
-          email: this.email,
-          password: this.password,
-        })
+      const formData = {
+        email: this.email,
+        password: this.password,
+      };
+
+      this.$store
+        .dispatch("login", formData)
         .then(() => {
           setTimeout(() => {
             this.$router.push({ name: "StudentHome" });
@@ -79,8 +81,27 @@ export default {
         })
         .catch((err) => {
           this.loading = false;
-          this.error = err.response.data;
+          this.error = err;
         });
+
+      // axios
+      //   .post("https://italian-back.herokuapp.com/login", {
+      //     email: this.email,
+      //     password: this.password,
+      //   })
+      //   .then(() => {
+      //     setTimeout(() => {
+      //       this.$router.push({ name: "StudentHome" });
+      //       this.change_state_login(false);
+      //       this.email = "";
+      //       this.password = "";
+      //       this.loading = false;
+      //     }, 2000);
+      //   })
+      //   .catch((err) => {
+      //     this.loading = false;
+      //     this.error = err.response.data;
+      //   });
     },
   },
 };

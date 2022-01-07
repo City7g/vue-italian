@@ -100,6 +100,7 @@
 
 <script>
 import axios from "axios";
+import { mapGetters } from 'vuex'
 import Level from "@/components/Student/Level.vue";
 
 export default {
@@ -111,11 +112,16 @@ export default {
       loading: true
     };
   },
+  computed: {
+    ...mapGetters(['getToken', 'getUser'])
+  },
   mounted() {
     axios.get("https://italian-back.herokuapp.com/classes").then((data) => {
       this.loading = false;
       this.packagesList = data.data;
     });
+    console.log(this.getToken)
+    console.log(this.getUser)
   },
 };
 </script>

@@ -36,7 +36,7 @@
 
     <div class="student-aside-user">
       <UserAvatar class="student-aside-user__avatar" />
-      <h4>Дмитрий Релик</h4>
+      <h4>{{ getUser ? getUser.name : "Дмитрий Релик" }}</h4>
       <button
         @click="userNotification = !userNotification"
         class="student-aside-user__notification"
@@ -92,6 +92,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import MenuHamburger from "@/components/MenuHamburger.vue";
 import MainLogo from "@/components/MainLogo.vue";
 // Icons Navigation
@@ -185,6 +186,9 @@ export default {
           .before(document.querySelector(".student-aside-user"));
       }
     },
+  },
+  computed: {
+    ...mapGetters(["getUser"]),
   },
   watch: {
     isOpenMenu(old) {

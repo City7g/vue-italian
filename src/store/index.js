@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import * as popups from './popups'
+import * as auth from './auth'
 
 export default createStore({
   state: {
@@ -144,5 +145,6 @@ export default createStore({
   actions: {},
   modules: {
     popups,
+    auth
   },
 })
