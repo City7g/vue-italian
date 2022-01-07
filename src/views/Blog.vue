@@ -18,35 +18,66 @@
 
     <section class="blog-content">
       <div class="container">
-        <ul class="blog-tab">
-          <li
-            v-for="category in blogCategory"
-            :key="category.id"
-            @click="currentCategory = category.value"
-            class="title-h2 blog-tab__item"
-            :class="{ active: category.value === currentCategory }"
+        <svg
+          v-if="loading"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          class="blog-content__loading"
+        >
+          <path
+            d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"
           >
-            {{ category.title }}
-          </li>
-        </ul>
-
-        <div class="blog-posts">
-          <div v-for="post in showBlogList" :key="post.id" class="blog-post">
-            <img
-              :src="require(`@/assets/images/blog/${post.img}`)"
-              alt=""
-              class="blog-post__img"
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              dur="1s"
+              from="0 50 50"
+              to="360 50 50"
+              repeatCount="indefinite"
             />
-            <h2 class="text-main blog-post__title">{{ post.title }}</h2>
-            <p class="blog-post__date">{{ post.date }}</p>
+          </path>
+        </svg>
+
+        <template v-else>
+          <ul class="blog-tab">
+            <li
+              v-for="category in blogCategory"
+              :key="category.id"
+              @click="filterBlog(category.value)"
+              class="title-h2 blog-tab__item"
+              :class="{ active: category.value === currentCategory }"
+            >
+              {{ category.title }}
+            </li>
+          </ul>
+
+          <div class="blog-posts">
+            <div
+              v-for="post in blogList"
+              :key="post.id"
+              class="blog-post"
+              :style="{
+                display: post.category.includes(currentCategory)
+                  ? 'block'
+                  : 'none',
+              }"
+            >
+              <img :src="post.img" alt="" class="blog-post__img" />
+              <h2 class="text-main blog-post__title">{{ post.title }}</h2>
+              <p class="blog-post__date">{{ formatDate(post.createdAt) }}</p>
+            </div>
           </div>
-        </div>
+        </template>
       </div>
     </section>
   </main>
 </template>
 
 <script>
+// import { gsap } from "gsap";
+// import { Flip } from "gsap/Flip";
+
+import axios from "axios";
 import { mapState } from "vuex";
 import StandartHead from "@/components/Sections/StandartHead.vue";
 import InfoSection from "@/components/Sections/InfoSection.vue";
@@ -57,17 +88,44 @@ export default {
   data() {
     return {
       currentCategory: "italy",
+      blogList: null,
+      loading: true,
     };
   },
-  computed: {
-    ...mapState(["blogCategory", "blogList"]),
-    showBlogList() {
-      return this.blogList.filter((c) =>
-        c.categories.includes(this.currentCategory)
-      );
+  methods: {
+    formatDate(value) {
+      const now = new Date(value)
+        .toLocaleString("ru", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
+        .slice(0, -3);
+      return now;
+    },
+    filterBlog(value) {
+      this.currentCategory = value;
+      // const state = Flip.getState(".blog-post");
+
+      // console.log(state);
+      // Flip.from(state, {
+      //   duration: 0.7,
+      //   scale: true,
+      //   absolute: true,
+      //   stagger: 0.08,
+      // });
     },
   },
+  computed: {
+    ...mapState(["blogCategory"]),
+    // showBlogList() {
+    //   return this.blogList.filter((c) =>
+    //     c.category.includes(this.currentCategory)
+    //   );
+    // },
+  },
   mounted() {
+    // gsap.registerPlugin(Flip);
     if (this.$route.hash) {
       const hash = this.$route.hash;
       this.currentCategory = hash.replace(/^#/, "");
@@ -77,6 +135,13 @@ export default {
 
       window.scrollTo(0, scrollByTop);
     }
+    axios.get("https://italian-back.herokuapp.com/blog").then((data) => {
+      for (let i = 0; i < data.data.length; i++) {
+        data.data[i].category = JSON.parse(data.data[i].category);
+      }
+      this.loading = false;
+      this.blogList = data.data;
+    });
   },
 };
 </script>
@@ -84,6 +149,14 @@ export default {
 <style lang="scss">
 .blog-content {
   background-color: $white;
+
+  &__loading {
+    display: block;
+    width: 50px;
+    margin: 0 auto;
+
+    fill: $green;
+  }
 }
 
 .blog-posts {
