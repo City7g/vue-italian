@@ -4,9 +4,11 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import Home from '../views/Home.vue'
 
+import studentRoutes from './student'
+
 NProgress.configure({ showSpinner: false })
 
-const routes = [
+const main = [
   {
     path: '/',
     name: 'Home',
@@ -70,85 +72,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "Video" */ '../views/Video.vue'),
   },
-  // Student
-  {
-    path: '/home',
-    name: 'StudentHome',
-    meta: {
-      layout: 'student',
-      requiresAuth: true
-    },
-    component: () =>
-      import(/* webpackChunkName: "StudentHome" */ '../views/Student/Home.vue'),
-  },
-  {
-    path: '/level',
-    name: 'StudentLevel',
-    meta: {
-      layout: 'student'
-    },
-    component: () =>
-      import(/* webpackChunkName: "StudentLevel" */ '../views/Student/Level.vue'),
-  },
-  {
-    path: '/all-teachers',
-    name: 'AllTeachers',
-    meta: {
-      layout: 'student'
-    },
-    component: () =>
-      import(/* webpackChunkName: "AllTeachers" */ '../views/Student/AllTeachers.vue'),
-  },
-  {
-    path: '/packages/:id',
-    name: 'StudentPackages',
-    meta: {
-      layout: 'student'
-    },
-    component: () =>
-      import(/* webpackChunkName: "StudentPackages" */ '../views/Student/StudentPackages.vue'),
-  },
-  {
-    path: '/buy-packages/:id',
-    name: 'BuyPackage',
-    meta: {
-      layout: 'student'
-    },
-    component: () =>
-      import(/* webpackChunkName: "BuyPackage" */ '../views/Student/BuyPackage.vue'),
-  },
-  {
-    path: '/calendar',
-    name: 'StudentCalendar',
-    meta: {
-      layout: 'student'
-    },
-    component: () =>
-      import(/* webpackChunkName: "StudentCalendar" */ '../views/Student/Calendar.vue'),
-  },
-  {
-    path: '/settings',
-    name: 'StudentSettings',
-    meta: {
-      layout: 'student'
-    },
-    component: () =>
-      import(/* webpackChunkName: "StudentSettings" */ '../views/Student/Settings.vue'),
-  },
-  {
-    path: '/faq',
-    name: 'StudentFAQ',
-    meta: {
-      layout: 'student'
-    },
-    component: () =>
-      import(/* webpackChunkName: "StudentFAQ" */ '../views/Student/FAQ.vue'),
-  },
-  {
-    path: '/error',
-    name: 'Error',
-    component: () => import('../views/Error.vue'),
-  },
+  
   {
     path: '/navigator',
     name: 'Navigator',
@@ -159,11 +83,20 @@ const routes = [
     name: 'UIKit',
     component: () => import('../views/UIKit.vue'),
   },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/error',
-  },
 ]
+
+const routes = main.concat(studentRoutes)
+
+routes.push({
+  path: '/error',
+  name: 'Error',
+  component: () => import('../views/Error.vue'),
+})
+
+routes.push({
+  path: '/:pathMatch(.*)*',
+  redirect: '/error',
+})
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
