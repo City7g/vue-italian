@@ -29,11 +29,18 @@ export default {
     Background,
     Login,
     Register,
-    NoWiFi
+    NoWiFi,
   },
   computed: {
     ...mapGetters(["stateLogin", "stateRegister"]),
-  }
+  },
+  watch: {
+    $route() {
+      if (window.location.hash === "#message=login") {
+        this.$store.dispatch("change_state_login", true);
+      }
+    },
+  },
 };
 </script>
 
@@ -52,7 +59,7 @@ export default {
 }
 
 // Fixed nprogress color
-#nprogress .bar  {
+#nprogress .bar {
   background-color: $green !important;
 }
 

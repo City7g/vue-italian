@@ -11,9 +11,10 @@
           :key="link.title"
           class="footer-list__item"
         >
-          <router-link :to="link.path" class="main-link footer-list__link">
+          <!-- <router-link :to="link.path" class="main-link footer-list__link">
             {{ link.title }}
-          </router-link>
+          </router-link> -->
+          <BaseLink class="footer-list__link" :path="link.path" :text="link.title" />
         </li>
       </ul>
 

@@ -11,8 +11,8 @@
       </p> -->
 
       <form @submit.prevent="login" class="popup-login__form" novalidate>
-        <input type="email" placeholder="Ваша почта" v-model="email" />
-        <input type="password" placeholder="Ваш пароль" v-model="password" />
+        <BaseInput type="email" placeholder="Ваша почта" v-model="email" />
+        <BaseInput type="password" placeholder="Ваш пароль" v-model="password" />
         <BaseButton type="submit" text="Войти" :loading="loading" />
         <p v-if="error" class="popup-login__error">{{ error }}</p>
       </form>
@@ -42,13 +42,9 @@
 <script>
 // import axios from "axios";
 import { mapActions } from "vuex";
-import BaseButton from "@/components/Base/Button";
 
 export default {
   name: "Login",
-  components: {
-    BaseButton,
-  },
   data() {
     return {
       email: null,

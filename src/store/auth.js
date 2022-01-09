@@ -53,10 +53,7 @@ export const actions = {
 }
 
 export const getters = {
-  getToken: state => {
-    return state.token
-  },
-  getUser: state => {
-    return state.user
-  },
+  getToken: state => state.token,
+  isLoggedIn: state => !!state.token,
+  getUser: state => state.user,
 }

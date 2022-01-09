@@ -51,13 +51,9 @@
 <script>
 import axios from "axios";
 import { mapActions } from "vuex";
-import BaseButton from "@/components/Base/Button";
 
 export default {
   name: "Register",
-  components: {
-    BaseButton,
-  },
   data() {
     return {
       name: null,

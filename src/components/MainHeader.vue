@@ -1,8 +1,5 @@
 <template>
-  <header
-    class="header"
-    v-bottom-shadow="'header--shadow'"
-  >
+  <header class="header" v-bottom-shadow="'header--shadow'">
     <div class="container">
       <MainLogo class="header-logo" />
 
@@ -13,13 +10,19 @@
             :key="link.title"
             class="header-nav__item"
           >
-            <router-link
+            <!-- <router-link
               @click="isOpenMenu = false"
               :to="link.path"
               class="main-link header-nav__link"
             >
               {{ link.title }}
-            </router-link>
+            </router-link> -->
+            <BaseLink
+              @click="isOpenMenu = false"
+              class="header-nav__link"
+              :path="link.path"
+              :text="link.title"
+            />
           </li>
         </ul>
       </nav>
@@ -59,7 +62,13 @@ import InstagramIcon from "@/assets/images/social/instagram.svg?inline";
 
 export default {
   name: "MainHeader",
-  components: { MainLogo, MenuHamburger, YoutubeIcon, FacebookIcon, InstagramIcon },
+  components: {
+    MainLogo,
+    MenuHamburger,
+    YoutubeIcon,
+    FacebookIcon,
+    InstagramIcon,
+  },
   directives: { bottomShadow },
   data() {
     return {

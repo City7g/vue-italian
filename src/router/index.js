@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '../store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import Home from '../views/Home.vue'
@@ -74,7 +75,8 @@ const routes = [
     path: '/home',
     name: 'StudentHome',
     meta: {
-      layout: 'student'
+      layout: 'student',
+      requiresAuth: true
     },
     component: () =>
       import(/* webpackChunkName: "StudentHome" */ '../views/Student/Home.vue'),
@@ -176,6 +178,18 @@ router.beforeEach((to, from, next) => {
     NProgress.start()
   }
   next()
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next('/#message=login') 
+  } else {
+    next() 
+  }
 })
 
 router.afterEach(() => {
