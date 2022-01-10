@@ -3,8 +3,7 @@ const studentRoutes = [
     path: '/home',
     name: 'StudentHome',
     meta: {
-      layout: 'student',
-      requiresAuth: true
+      title: 'Home'
     },
     component: () =>
       import(/* webpackChunkName: "StudentHome" */ '../views/Student/Home.vue'),
@@ -13,16 +12,16 @@ const studentRoutes = [
     path: '/level',
     name: 'StudentLevel',
     meta: {
-      layout: 'student'
+      title: 'Level'
     },
     component: () =>
       import(/* webpackChunkName: "StudentLevel" */ '../views/Student/Level.vue'),
   },
   {
     path: '/all-teachers',
-    name: 'AllTeachers',
+    name: 'All Teachers',
     meta: {
-      layout: 'student'
+      title: 'student'
     },
     component: () =>
       import(/* webpackChunkName: "AllTeachers" */ '../views/Student/AllTeachers.vue'),
@@ -31,7 +30,7 @@ const studentRoutes = [
     path: '/packages/:id',
     name: 'StudentPackages',
     meta: {
-      layout: 'student'
+      title: 'Packages'
     },
     component: () =>
       import(/* webpackChunkName: "StudentPackages" */ '../views/Student/StudentPackages.vue'),
@@ -40,7 +39,7 @@ const studentRoutes = [
     path: '/buy-packages/:id',
     name: 'BuyPackage',
     meta: {
-      layout: 'student'
+      title: 'Buy Package'
     },
     component: () =>
       import(/* webpackChunkName: "BuyPackage" */ '../views/Student/BuyPackage.vue'),
@@ -49,7 +48,7 @@ const studentRoutes = [
     path: '/calendar',
     name: 'StudentCalendar',
     meta: {
-      layout: 'student'
+      title: 'Calendar'
     },
     component: () =>
       import(/* webpackChunkName: "StudentCalendar" */ '../views/Student/Calendar.vue'),
@@ -58,7 +57,7 @@ const studentRoutes = [
     path: '/settings',
     name: 'StudentSettings',
     meta: {
-      layout: 'student'
+      title: 'Settings'
     },
     component: () =>
       import(/* webpackChunkName: "StudentSettings" */ '../views/Student/Settings.vue'),
@@ -67,11 +66,16 @@ const studentRoutes = [
     path: '/faq',
     name: 'StudentFAQ',
     meta: {
-      layout: 'student'
+      title: 'FAQ'
     },
     component: () =>
       import(/* webpackChunkName: "StudentFAQ" */ '../views/Student/FAQ.vue'),
   },
 ];
+
+studentRoutes.forEach(route => {
+  route.meta.requiresAuth = true
+  route.meta.layout = 'student'
+})
 
 export default studentRoutes;

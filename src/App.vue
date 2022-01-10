@@ -36,6 +36,8 @@ export default {
   },
   watch: {
     $route() {
+      document.title = this.$route.meta.title || "Italian";
+
       if (window.location.hash === "#message=login") {
         this.$store.dispatch("change_state_login", true);
       }
