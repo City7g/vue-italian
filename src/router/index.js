@@ -3,12 +3,11 @@ import store from '../store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import Home from '../views/Home.vue'
-
-import studentRoutes from './student'
+import studenRoutes from './student'
 
 NProgress.configure({ showSpinner: false })
 
-const main = [
+const routes = [
   {
     path: '/',
     name: 'Home',
@@ -72,7 +71,13 @@ const main = [
     component: () =>
       import(/* webpackChunkName: "Video" */ '../views/Video.vue'),
   },
-  
+  // Student
+  ...studenRoutes,
+  {
+    path: '/error',
+    name: 'Error',
+    component: () => import('../views/Error.vue'),
+  },
   {
     path: '/navigator',
     name: 'Navigator',
@@ -83,20 +88,11 @@ const main = [
     name: 'UIKit',
     component: () => import('../views/UIKit.vue'),
   },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/error',
+  },
 ]
-
-const routes = main.concat(studentRoutes)
-
-routes.push({
-  path: '/error',
-  name: 'Error',
-  component: () => import('../views/Error.vue'),
-})
-
-routes.push({
-  path: '/:pathMatch(.*)*',
-  redirect: '/error',
-})
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
