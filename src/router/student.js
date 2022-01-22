@@ -19,9 +19,9 @@ const studentRoutes = [
   },
   {
     path: '/all-teachers',
-    name: 'All Teachers',
+    name: 'AllTeachers',
     meta: {
-      title: 'student'
+      title: 'All Teachers'
     },
     component: () =>
       import(/* webpackChunkName: "AllTeachers" */ '../views/Student/AllTeachers.vue'),
