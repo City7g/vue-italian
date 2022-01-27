@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="path"
+    :to="path ?? '#'"
     class="main-link"
   >
     {{ text }}

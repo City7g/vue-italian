@@ -24,6 +24,13 @@
               :text="link.title"
             />
           </li>
+          <li class="header-nav__item">
+            <BaseLink
+              @click="$i18n.locale = 'en'"
+              class="header-nav__link"
+              :text="$t('login')"
+            />
+          </li>
         </ul>
       </nav>
 
@@ -41,7 +48,7 @@
 
       <div class="header-btn">
         <button class="white-btn" @click="change_state_login(true)">
-          Войти
+          {{$t('login')}}
         </button>
         <button class="small-btn" @click="changeTheme">Тема</button>
       </div>
