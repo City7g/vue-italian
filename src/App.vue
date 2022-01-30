@@ -1,4 +1,7 @@
 <template>
+  <transition name="background">
+    <Preloader v-if="loading" />
+  </transition>
   <StudentLayout v-if="$route.meta.layout === 'student'" />
   <MainLayout v-else />
   <transition name="background">
@@ -21,6 +24,7 @@ import Background from "@/components/Background.vue";
 import Login from "@/components/Forms/Login.vue";
 import Register from "@/components/Forms/Register.vue";
 import NoWiFi from "@/components/NoWiFi.vue";
+import Preloader from "@/components/Preloader.vue";
 
 export default {
   components: {
@@ -30,6 +34,12 @@ export default {
     Login,
     Register,
     NoWiFi,
+    Preloader,
+  },
+  data() {
+    return {
+      loading: true,
+    };
   },
   computed: {
     ...mapGetters(["stateLogin", "stateRegister"]),
@@ -44,11 +54,13 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$store.getters.getToken);
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
     if (localStorage.getItem("email") && localStorage.getItem("password")) {
       this.$store.dispatch("login", {
-        email: localStorage.getItem('email'),
-        password: localStorage.getItem('password')
+        email: localStorage.getItem("email"),
+        password: localStorage.getItem("password"),
       });
     }
   },
