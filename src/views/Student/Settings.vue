@@ -1,25 +1,34 @@
 <template>
-  <div class="student-settings">
+  <div class="student-settings" v-if="user">
     <h1 class="title-h3 student-settings__title">Настройки профиля</h1>
 
-    <div class="student-settings__main">
-      <img src="@/assets/images/settings-avatar.png" alt="" class="student-settings__avatar" />
+    <form @submit.prevent="editUser" class="student-settings__main" novalidate>
+      <img
+        src="@/assets/images/settings-avatar.png"
+        alt=""
+        class="student-settings__avatar"
+      />
 
       <div class="student-settings__info">
-        <input type="text" placeholder="Ваше имя" value="Дмитрий">
-        <input type="tel" placeholder="Ваш телефон" value="+7(068)104-11-22">
-        <input type="text" placeholder="Ваша фамилия" value="Релик">
+        <input type="text" placeholder="Ваше имя" v-model="user.name" />
+        <input type="tel" placeholder="Ваш телефон" v-model="user.phone" />
+        <input type="text" placeholder="Ваша фамилия" v-model="user.name" />
       </div>
 
       <div class="student-settings__passwords">
         <p class="text-regular student-settings__subtitle">Изменение пароля</p>
-        <input type="password" placeholder="Старый пароль">
-        <input type="email" placeholder="Dinrelik@gmail.com">
-        <input type="password" placeholder="Новый пароль">
+        <input
+          type="text"
+          placeholder="Старый пароль"
+          v-model="user.password"
+        />
+        <input type="email" placeholder="some@mail.com" v-model="user.email" />
+        <input type="text" placeholder="Новый пароль" v-model="user.password" />
       </div>
 
-      <button class="main-btn student-settings__btn">Сохранить изменения</button>
-    </div>
+      <BaseButton type="submit" text="Сохранить изменения" :loading="loading" />
+      <!-- <button class="main-btn student-settings__btn">Сохранить изменения</button> -->
+    </form>
 
     <h2 class="title-h3 student-settings__title">Настройки уведомлений</h2>
 
@@ -49,11 +58,51 @@
 </template>
 
 <script>
+import axios from "axios";
 import MainSwitch from "@/components/MainSwitch.vue";
 
 export default {
   name: "StudentSettings",
   components: { MainSwitch },
+  data() {
+    return {
+      user: {
+        name: null,
+        phone: null,
+        email: null,
+        password: null,
+      },
+
+      loading: false,
+    };
+  },
+  methods: {
+    editUser() {
+      this.loading = true;
+      axios
+        .post('https://italian-back.herokuapp.com/edit', {
+          name: this.user.name,
+          phone: this.user.phone,
+          email: this.user.email,
+          password: this.user.password,
+        })
+        .then((data) => {
+          console.log(data);
+          this.loading = false;
+        })
+        .catch((err) => {
+          console.log(err);
+          this.loading = false;
+        });
+    },
+  },
+  mounted() {
+    const { name, phone, email, password } = this.$store.getters.getUser;
+    this.user.name = name;
+    this.user.phone = phone;
+    this.user.email = email;
+    this.user.password = password;
+  },
 };
 </script>
 

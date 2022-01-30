@@ -67,13 +67,13 @@ export default {
       this.$store
         .dispatch("login", formData)
         .then(() => {
-          setTimeout(() => {
+          // setTimeout(() => {
             this.$router.push({ name: "StudentHome" });
             this.change_state_login(false);
             this.email = "";
             this.password = "";
             this.loading = false;
-          }, 2000);
+          // }, 2000);
         })
         .catch((err) => {
           this.loading = false;
