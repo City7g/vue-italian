@@ -2,17 +2,21 @@ import axios from 'axios'
 
 export const state = {
   user: null,
-  token: null
+  token: null || localStorage.getItem('token')
 }
 
 export const mutations = {
-  setToken(state, token) {
+  setToken(state, { token, email, password }) {
     state.token = token
     localStorage.setItem('token', token)
+    localStorage.setItem('login', email)
+    localStorage.setItem('password', password)
   },
   removeToken(state) {
     state.token = null
     localStorage.removeItem('token')
+    localStorage.removeItem('login')
+    localStorage.removeItem('password')
   },
 
   setUser(state, user) {
@@ -28,7 +32,7 @@ export const actions = {
     return axios
       .post('https://italian-back.herokuapp.com/login', { email, password })
       .then(data => {
-        commit('setToken', data.data.token)
+        commit('setToken', {token: data.data.token, email, password })
         commit('setUser', data.data.user)
         return data.data
       })
@@ -49,7 +53,9 @@ export const actions = {
         throw err.response.data
       })
   },
-
+  updateUser({ commit }, user) {
+    commit('setUser', user)
+  }
 }
 
 export const getters = {

@@ -43,6 +43,15 @@ export default {
       }
     },
   },
+  mounted() {
+    console.log(this.$store.getters.getToken);
+    if (localStorage.getItem("email") && localStorage.getItem("password")) {
+      this.$store.dispatch("login", {
+        email: localStorage.getItem('email'),
+        password: localStorage.getItem('password')
+      });
+    }
+  },
 };
 </script>
 

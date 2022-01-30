@@ -87,7 +87,7 @@ export default {
           password: this.user.password,
         })
         .then((data) => {
-          console.log(data);
+          this.$store.dispatch('updateUser', data.data.updatedUser)
           this.loading = false;
         })
         .catch((err) => {
