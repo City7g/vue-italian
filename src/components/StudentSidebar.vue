@@ -157,7 +157,7 @@ export default {
         },
         {
           name: "Ищешь что-то особенное?",
-          path: "StudentLevel",
+          path: "StudentSpecial",
           img: "Cloud",
           special: true,
         },

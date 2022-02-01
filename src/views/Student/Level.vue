@@ -15,28 +15,21 @@
       </p>
       <h5 class="button-bold">Мой уровень:</h5>
       <div class="select-level__select">
-        <!-- <MainSelect /> -->
+        <MainSelect />
       </div>
-
-      <!-- <select>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select> -->
     </div>
   </div>
 </template>
 
 <script>
-// import MainSelect from "@/components/MainSelect.vue";
+import MainSelect from "@/components/MainSelect.vue";
 import CatNearTheBoard from "@/assets/images/blog-head.svg?inline";
 import SelectLevel from "@/assets/images/select-level.svg?inline";
 
 export default {
   name: "LevelStudent",
   components: {
-    // MainSelect,
+    MainSelect,
     CatNearTheBoard,
     SelectLevel
   },
@@ -72,6 +65,7 @@ export default {
 .select-level {
   display: grid;
   grid-template-columns: 1fr auto auto;
+  align-items: center;
   gap: 0 10px;
 
   max-width: 355px;

@@ -36,7 +36,7 @@
   </div>
 
   <select v-else class="basic-select" v-model="currentValue">
-    <option v-for="item in selectValues" :key="item.id" value="item.id">
+    <option v-for="item in selectValues" :key="item.id" value="item.id" :selected="item.id === 0">
       {{ item.value }}
     </option>
   </select>
@@ -162,5 +162,11 @@ export default {
 
 .basic-select {
   padding: 8px;
+  min-width: 81px;
+
+  color: $green;
+  background-color: $white;
+  border-radius: 2px;
+  border: 1px solid $grey-disabled;
 }
 </style>

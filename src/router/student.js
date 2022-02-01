@@ -27,6 +27,15 @@ const studentRoutes = [
       import(/* webpackChunkName: "AllTeachers" */ '../views/Student/AllTeachers.vue'),
   },
   {
+    path: '/special',
+    name: 'StudentSpecial',
+    meta: {
+      title: 'Student Special'
+    },
+    component: () =>
+      import(/* webpackChunkName: "StudentSpecial" */ '../views/Student/Special.vue'),
+  },
+  {
     path: '/packages/:id',
     name: 'StudentPackages',
     meta: {
