@@ -11,12 +11,13 @@
       </p>
 
       <form @submit.prevent="register" class="popup-login__form">
-        <input type="text" placeholder="Ваше имя" v-model="name" />
-        <input type="email" placeholder="Ваша почта" v-model="email" />
+        <input type="text" placeholder="Ваше имя" v-model="name" autocomplete="off" />
+        <input type="email" placeholder="Ваша почта" v-model="email" autocomplete="off" />
         <input
           type="password"
           placeholder="Придумайте пароль"
           v-model="password"
+          autocomplete="off"
         />
         <BaseButton
           type="submit"
