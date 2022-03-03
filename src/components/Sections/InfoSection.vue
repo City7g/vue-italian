@@ -1,7 +1,7 @@
 <template>
   <section class="info-section" :class="{ 'info-section--grey': isGrey }">
     <div class="container">
-      <div class="info-section__content">
+      <div class="info-section__content" ref="content">
         <h1 class="title-h1 info-section__title">
           {{ title }}
         </h1>
@@ -22,6 +22,7 @@
       <div
         class="info-section__img"
         :class="{ 'info-section__img--first': isFirstImg }"
+        ref="image"
       >
         <component :is="img" />
       </div>
@@ -30,6 +31,7 @@
 </template>
 
 <script>
+import gsap from "gsap";
 import HomeFirst from "@/assets/images/home-first.svg?inline";
 import HomeWe from "@/assets/images/home-we.svg?inline";
 import HomeNext from "@/assets/images/home-next.svg?inline";
@@ -80,6 +82,19 @@ export default {
       text: this.description,
     };
   },
+  mounted() {
+    console.log(this.$refs.content)
+    gsap.from(this.$refs.content, {
+      y: '-100%',
+      opacity: 0,
+      duration: 1.4
+    })
+    gsap.from(this.$refs.image, {
+      y: '100%',
+      opacity: 0,
+      duration: 1.4,
+    })
+  }
 };
 </script>
 
