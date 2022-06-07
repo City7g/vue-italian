@@ -182,6 +182,8 @@ export default {
 }
 
 .footer-btn {
+  -webkit-tap-highlight-color: transparent;
+  
   @media (max-width: 768px) {
     order: 2;
   }
